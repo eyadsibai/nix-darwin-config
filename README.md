@@ -1,15 +1,14 @@
-# Nix Darwin Kickstarter - Rich Demo
+# Nix Darwin Kickstarter
 
  An extensive demo featuring a plethora of configurations that can serve as a reference for your setup. However, exercise caution, as it may **OVERWRITE** your system configuration. **DO NOT** deploy it directly to your system.
 
 
 ## How to Start
 
-1. Start your nix-darwin journey by following the [minimal](../minimal) configuration.
-2. Read all the files in this repository, and understand what they do.
-   1. If you have trouble understanding, [ryan4yin/nixos-and-flakes-book](https://github.com/ryan4yin/nixos-and-flakes-book) is a good resource to learn nix and flakes.
-3. Copy and CUSTOMIZE the configuration you need from this demo to your own configuration.
-4. Run `make deploy` in the root of your nix configuration to deploy your configuration.
+1. install nix
+2. download this repo
+3. change hostname and username
+4. run 'nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .'
 
 ## Configuration Structure
 
