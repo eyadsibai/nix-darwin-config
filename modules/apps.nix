@@ -67,10 +67,10 @@
     };
 
     taps = [
-      "homebrew/cask-fonts"
-      "homebrew/services"
-      "homebrew/bundle"
-      "FelixKratz/formulae"
+#      "homebrew/cask-fonts"
+ #     "homebrew/services"
+ #     "homebrew/bundle"
+ #     "FelixKratz/formulae"
     ];
 
     # `brew install`
