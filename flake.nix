@@ -50,6 +50,16 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+ homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -65,12 +75,13 @@
     stylix,
     nix-index-database,
     nixvim,
+    nix-homebrew,
     ...
   }: let
     username = "eyad";
     useremail = "eyad.alsibai@gmail.com";
     system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
-    hostname = "${username}-air";
+    hostname = "${username}-m3";
     specialArgs =
       inputs
       // {
@@ -104,7 +115,31 @@
           home-manager.backupFileExtension = "bak";
           home-manager.users.${username} = import ./home;
         }
+                nix-homebrew.darwinModules.nix-homebrew
 
+		 {
+          nix-homebrew = {
+            # Install Homebrew under the default prefix
+            enable = true;
+
+            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+            enableRosetta = true;
+
+            # User owning the Homebrew prefix
+            user = "eyad";
+
+            # Optional: Declarative tap management
+            taps = {
+              "homebrew/homebrew-core" = inputs.homebrew-core;
+              "homebrew/homebrew-cask" = inputs.homebrew-cask;
+            };
+
+            # Optional: Enable fully-declarative tap management
+            #
+            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+            mutableTaps = false;
+          };
+        }
         # ./modules/scripts.nix
       ];
     };
