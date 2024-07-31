@@ -66,12 +66,12 @@
       # QQMusic = 595615424;
     };
 
-    taps = [
-      "homebrew/cask-fonts"
-      "homebrew/services"
-     "homebrew/bundle"
-      "FelixKratz/formulae"
-    ];
+#    taps = [
+#      "homebrew/cask-fonts"
+#      "homebrew/services"
+#     "homebrew/bundle"
+#      "FelixKratz/formulae"
+#    ];
 
     # `brew install`
     # TODO Feel free to add your favorite apps here.
