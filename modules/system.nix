@@ -30,7 +30,11 @@
         wvous-bl-corner = 3; # bottom-left - Application Windows
         wvous-br-corner = 4; # bottom-right - Desktop
 
-        tilesize = 32;
+        tilesize = 48;
+
+                # Whether to arrange spaces based on most recent use
+        mru-spaces = false;
+        launchanim = true;
       };
 
       # customize finder
@@ -42,6 +46,7 @@
         ShowPathbar = true; # show path bar
         ShowStatusBar = true; # show status bar
         AppleShowAllFiles = true;
+        CreateDesktop = false;
       };
 
       # customize trackpad
@@ -50,12 +55,24 @@
         Clicking = true; # enable tap to click(轻触触摸板相当于点击)
         TrackpadRightClick = true; # enable two finger right click
         TrackpadThreeFingerDrag = true; # enable three finger drag
+             # Enable silent clicking
+        ActuationStrength = 0;
+     
       };
 
+      # Trackpad speed, 0 to 3
+        "com.apple.trackpad.scaling" = 1.0;
+      # Sounds like something I want, but it actually reduces motions related to trackpad movements which I want to keep.
+      universalaccess = {
+        reduceMotion = false;
+      };
       # customize settings that not supported by nix-darwin directly
       # Incomplete list of macOS `defaults` commands :
       #   https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
+                AppleShowAllExtensions = true; # show all file extensions
+        #AppleEnableMouseSwipeNavigateWithScrolls = true;
+        #AppleEnableSwipeNavigateWithScrolls = true;
         # `defaults read NSGlobalDomain "xxx"`
         "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
@@ -63,11 +80,23 @@
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
         ApplePressAndHoldEnabled = true; # enable press and hold
 
+        # Smooth scrolling
+        NSScrollAnimationEnabled = true;
+
+
+        # Autohide menu bar to make space for sketchyba
+        _HIHideMenuBar = true;
+
+
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
         # sets how long it takes before it starts repeating.
+        # 120, 94, 68, 35, 25, 15
+
         InitialKeyRepeat = 15; # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
         # sets how fast it repeats once it starts.
+        # 120, 90, 60, 30, 12, 6, 2
+
         KeyRepeat = 3; # normal minimum is 2 (30 ms), maximum is 120 (1800 ms)
 
         NSAutomaticCapitalizationEnabled = false; # disable auto capitalization(自动大写)
@@ -75,16 +104,25 @@
         NSAutomaticPeriodSubstitutionEnabled = false; # disable auto period substitution(智能句号替换)
         NSAutomaticQuoteSubstitutionEnabled = false; # disable auto quote substitution(智能引号替换)
         NSAutomaticSpellingCorrectionEnabled = false; # disable auto spelling correction(自动拼写检查)
+                NSAutomaticWindowAnimationsEnabled = false;
+
         NSNavPanelExpandedStateForSaveMode = true; # expand save panel by default(保存文件时的路径选择/文件名输入页)
         NSNavPanelExpandedStateForSaveMode2 = true;
 
         AppleTemperatureUnit = "Celsius";
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
+          # AppleInterfaceStyleSwitchesAutomatically = true;
+
         NSDocumentSaveNewDocumentsToCloud = false;
         AppleICUForce24HourTime = true;
         AppleShowAllFiles = true;
         "com.apple.keyboard.fnState" = false;
         # for the magic mouse
         # "com.apple.mouse.tapBehavior" = 1;
+
+                "com.apple.sound.beep.volume" = 0.0;
+        "com.apple.sound.beep.feedback" = 0;
       };
 
       # Customize settings that not supported by nix-darwin directly
@@ -170,7 +208,16 @@
   };
 
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = true;
+  # Enable sudo authentication with Touch ID
+  security = {
+    pam.enableSudoTouchIdAuth = true;
+    sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
+  };
+
+   # Enable linux builder VM.
+  # This setting relies on having access to a cached version of the builder, since Darwin can't build it itself. The configuration options of the builder *can* be changed, but requires access to a (in this case) aarch64-linux builder to build. Hence on a new machine, or if there's any problems with the existing builder, the build fails.
+  # For this reason, avoid changing the configuration options of linux-builder if at all possible.
+  nix.linux-builder.enable = true;
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   # this is required if you want to use darwin's default shell - zsh

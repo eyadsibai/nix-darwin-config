@@ -6,9 +6,11 @@
 ## How to Start
 
 1. install nix
-2. download this repo
-3. change hostname and username
-4. run 'nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .'
+2. install homebrew
+3. download this repo
+4. change hostname and username
+5. run 'nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake .'
+6. setup the rest of the apps
 
 ## Configuration Structure
 
