@@ -32,7 +32,7 @@
 
         tilesize = 48;
 
-                # Whether to arrange spaces based on most recent use
+        # Whether to arrange spaces based on most recent use
         mru-spaces = false;
         launchanim = true;
       };
@@ -55,22 +55,21 @@
         Clicking = true; # enable tap to click(轻触触摸板相当于点击)
         TrackpadRightClick = true; # enable two finger right click
         TrackpadThreeFingerDrag = true; # enable three finger drag
-             # Enable silent clicking
+        # Enable silent clicking
         ActuationStrength = 0;
-     
       };
 
       # Trackpad speed, 0 to 3
-        "com.apple.trackpad.scaling" = 1.0;
+      #     "com.apple.trackpad.scaling" = 1.0;
       # Sounds like something I want, but it actually reduces motions related to trackpad movements which I want to keep.
-      universalaccess = {
-        reduceMotion = false;
-      };
+      #universalaccess = {
+      # reduceMotion = false;
+      #};
       # customize settings that not supported by nix-darwin directly
       # Incomplete list of macOS `defaults` commands :
       #   https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
-                AppleShowAllExtensions = true; # show all file extensions
+        AppleShowAllExtensions = true; # show all file extensions
         #AppleEnableMouseSwipeNavigateWithScrolls = true;
         #AppleEnableSwipeNavigateWithScrolls = true;
         # `defaults read NSGlobalDomain "xxx"`
@@ -83,10 +82,8 @@
         # Smooth scrolling
         NSScrollAnimationEnabled = true;
 
-
         # Autohide menu bar to make space for sketchyba
         _HIHideMenuBar = true;
-
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
@@ -104,7 +101,7 @@
         NSAutomaticPeriodSubstitutionEnabled = false; # disable auto period substitution(智能句号替换)
         NSAutomaticQuoteSubstitutionEnabled = false; # disable auto quote substitution(智能引号替换)
         NSAutomaticSpellingCorrectionEnabled = false; # disable auto spelling correction(自动拼写检查)
-                NSAutomaticWindowAnimationsEnabled = false;
+        NSAutomaticWindowAnimationsEnabled = false;
 
         NSNavPanelExpandedStateForSaveMode = true; # expand save panel by default(保存文件时的路径选择/文件名输入页)
         NSNavPanelExpandedStateForSaveMode2 = true;
@@ -112,7 +109,7 @@
         AppleTemperatureUnit = "Celsius";
         AppleMeasurementUnits = "Centimeters";
         AppleMetricUnits = 1;
-          # AppleInterfaceStyleSwitchesAutomatically = true;
+        # AppleInterfaceStyleSwitchesAutomatically = true;
 
         NSDocumentSaveNewDocumentsToCloud = false;
         AppleICUForce24HourTime = true;
@@ -121,8 +118,7 @@
         # for the magic mouse
         # "com.apple.mouse.tapBehavior" = 1;
 
-                "com.apple.sound.beep.volume" = 0.0;
-        "com.apple.sound.beep.feedback" = 0;
+        "com.apple.sound.beep.volume" = 0.0;
       };
 
       # Customize settings that not supported by nix-darwin directly
@@ -214,7 +210,7 @@
     sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
   };
 
-   # Enable linux builder VM.
+  # Enable linux builder VM.
   # This setting relies on having access to a cached version of the builder, since Darwin can't build it itself. The configuration options of the builder *can* be changed, but requires access to a (in this case) aarch64-linux builder to build. Hence on a new machine, or if there's any problems with the existing builder, the build fails.
   # For this reason, avoid changing the configuration options of linux-builder if at all possible.
   nix.linux-builder.enable = true;

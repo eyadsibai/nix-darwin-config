@@ -9,8 +9,8 @@
   ##################################################################################################################
 
   # the nixConfig here only affects the flake itself, not the system configuration!
- #  nixConfig = {
-#     substituters = [
+  #  nixConfig = {
+  #     substituters = [
   #     # Query the mirror of USTC first, and then the official cache.
   #     "https://mirrors.ustc.edu.cn/nix-channels/store"
   #     "https://cache.nixos.org"
@@ -50,11 +50,9 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-  #  nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    #  nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+  };
 
-    };
-
- 
   outputs = inputs @ {
     self,
     nixpkgs,
@@ -63,7 +61,7 @@
     stylix,
     nix-index-database,
     nixvim,
-   # nix-homebrew,
+    # nix-homebrew,
     ...
   }: let
     username = "eyad";
@@ -103,31 +101,31 @@
           home-manager.backupFileExtension = "bak";
           home-manager.users.${username} = import ./home;
         }
-    #            nix-homebrew.darwinModules.nix-homebrew
+        #            nix-homebrew.darwinModules.nix-homebrew
 
-	#	 {
-     #     nix-homebrew = {
-            # Install Homebrew under the default prefix
-      #      enable = true;
+        #	 {
+        #     nix-homebrew = {
+        # Install Homebrew under the default prefix
+        #      enable = true;
 
-            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-#            enableRosetta = true;
-	#		autoMigrate= true;
-            # User owning the Homebrew prefix
-     #       user = "eyad";
+        # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+        #            enableRosetta = true;
+        #		autoMigrate= true;
+        # User owning the Homebrew prefix
+        #       user = "eyad";
 
-            # Optional: Declarative tap management
-#            taps = {
- #             "homebrew/homebrew-core" = inputs.homebrew-core;
-  #            "homebrew/homebrew-cask" = inputs.homebrew-cask;
-   #         };
+        # Optional: Declarative tap management
+        #            taps = {
+        #             "homebrew/homebrew-core" = inputs.homebrew-core;
+        #            "homebrew/homebrew-cask" = inputs.homebrew-cask;
+        #         };
 
-            # Optional: Enable fully-declarative tap management
-            #
-            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-#            mutableTaps = false;
-      #    };
-#        }
+        # Optional: Enable fully-declarative tap management
+        #
+        # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+        #            mutableTaps = false;
+        #    };
+        #        }
         # ./modules/scripts.nix
       ];
     };
