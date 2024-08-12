@@ -50,7 +50,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
-    #  nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
   outputs = inputs @ {
@@ -61,12 +60,11 @@
     stylix,
     nix-index-database,
     nixvim,
-    # nix-homebrew,
     ...
   }: let
     username = "eyad";
     useremail = "eyad.alsibai@gmail.com";
-    system = "aarch64-darwin"; # aarch64-darwin or x86_64-darwin
+    system = "aarch64-darwin"; 
     hostname = "${username}-m3";
     specialArgs =
       inputs
@@ -77,10 +75,10 @@
     darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
       inherit system specialArgs;
       modules = [
-        ./modules/nix-core.nix
-        ./modules/system.nix
-        ./modules/apps.nix
-        ./modules/host-users.nix
+        ./darwin/nix-core.nix
+        ./darwin/system.nix
+        ./darwin/apps.nix
+        ./darwin/host-users.nix
         stylix.darwinModules.stylix
         {
           stylix.enable = true;
@@ -101,32 +99,6 @@
           home-manager.backupFileExtension = "bak";
           home-manager.users.${username} = import ./home;
         }
-        #            nix-homebrew.darwinModules.nix-homebrew
-
-        #	 {
-        #     nix-homebrew = {
-        # Install Homebrew under the default prefix
-        #      enable = true;
-
-        # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-        #            enableRosetta = true;
-        #		autoMigrate= true;
-        # User owning the Homebrew prefix
-        #       user = "eyad";
-
-        # Optional: Declarative tap management
-        #            taps = {
-        #             "homebrew/homebrew-core" = inputs.homebrew-core;
-        #            "homebrew/homebrew-cask" = inputs.homebrew-cask;
-        #         };
-
-        # Optional: Enable fully-declarative tap management
-        #
-        # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-        #            mutableTaps = false;
-        #    };
-        #        }
-        # ./modules/scripts.nix
       ];
     };
 

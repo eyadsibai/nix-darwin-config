@@ -166,6 +166,7 @@
 
       "microsoft-remote-desktop"
       "orion"
+      "flameshot"
 
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
@@ -231,46 +232,5 @@
     ];
   };
 
-  #services = {tailscale.enable = true;
-  #yabai = {
-  #     enable = true;
-  #    enableScriptingAddition = true;
-  #   # TODO: yabairc (and maybe skhdrc?) refer to sketchybarrc and related files. How should this be organized?
-  # Could maybe use services.yabai.config to pass reference to skhd config dir?
-  #  extraConfig = builtins.readFile (flake-root + "/config/yabai/yabairc");
-  #    };
-  #   skhd = {
-  #    # When home-manager or nix-darwin creates launchd services on Darwin, it tries to use things like $HOME in the PATH set in EnvironmentVariables in the launchd service. However, according to LaunchControl, that field does not support variable expansion. Hence $HOME/.nix-profile/bin does not end up in the PATH for skhd.
-  # See https://github.com/LnL7/nix-darwin/issues/406
-  # Also, nix-based string replacement does not work when reading from separate file, so we have to do that here.
-  #   enable = true;
-  #  skhdConfig =
-  #   (builtins.readFile (flake-root + "/config/skhd/skhdrc"))
-  #  + ''
-  #
-  #         ctrl + alt - return : ${pkgs.kitty}/bin/kitty --single-instance $HOME'';
-  #  };
-  #};
-
-  # Fix for skhd not hot-reloading changes to config files on nix-darwin activation.
-  # https://github.com/LnL7/nix-darwin/issues/333#issuecomment-1981495455
-  # system.activationScripts.hotloadSKHD.text = ''
-  #  su - $(logname) -c '${pkgs.skhd}/bin/skhd -r'
-  #'';
-
-  # NOTE: The config files for these services are in the users home directory. They are set in modules/darwin/home-manager as xdg.configFile's.
-  # It would be better to be able to set the configs as part of the service definitions, but that is not supported.
-  # services = {
-  #  karabiner-elements.enable = true;
-  # The sketchybar service module has a config option, but it takes the contents of sketchybarrc as argument. My config is split across multiple arguments.
-  # sketchybar = {
-  #  enable = true;
-  # Empty config string means nix won't manage the config.
-  # TODO: If we want to have the config managed by nix, we can set `config` here to a string that simply imports our usual sketchybarrc. We'd have to only use relative paths in any sketchybar config, and we'd have to point Yabai configuration at the nix-managed files as well.
-  # This would make config tinkering more annoying.
-  # config = "";
-  # Dependencies of config
-  # extraPackages = [ pkgs.jq ];
-  #};
-  # };
+  #services = {tailscale.enable = true;};
 }
