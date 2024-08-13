@@ -77,7 +77,7 @@
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
         AppleInterfaceStyle = "Dark"; # dark mode
         AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
-        ApplePressAndHoldEnabled = true; # enable press and hold
+        ApplePressAndHoldEnabled = true; # enable press and hold        
 
         # Smooth scrolling
         NSScrollAnimationEnabled = true;
@@ -109,6 +109,7 @@
         AppleTemperatureUnit = "Celsius";
         AppleMeasurementUnits = "Centimeters";
         AppleMetricUnits = 1;
+        
         # AppleInterfaceStyleSwitchesAutomatically = true;
 
         NSDocumentSaveNewDocumentsToCloud = false;

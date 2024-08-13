@@ -150,7 +150,7 @@
       "send-to-kindle"
       "kindle"
       "qutebrowser"
-      "rectangle"
+      # "rectangle"
       "grammarly-desktop"
       "notion"
       "wezterm"
@@ -229,8 +229,10 @@
       "alt-tab"
       "amazon-q"
       "wave"
+
+      "nikitabobko/tap/aerospace"
     ];
   };
-
+    
   #services = {tailscale.enable = true;};
 }
