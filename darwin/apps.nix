@@ -75,6 +75,7 @@
       "homebrew/services"
       "homebrew/bundle"
       "FelixKratz/formulae"
+	  "nikitabobko/tap"
     ];
 
     # `brew install`
@@ -230,7 +231,7 @@
       "amazon-q"
       "wave"
 
-      "nikitabobko/tap/aerospace"
+      "aerospace"
     ];
   };
     
