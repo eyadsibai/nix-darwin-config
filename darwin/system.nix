@@ -82,8 +82,8 @@
         # Smooth scrolling
         NSScrollAnimationEnabled = true;
 
-        # Autohide menu bar to make space for sketchyba
-        _HIHideMenuBar = true;
+        # Autohide menu bar
+        _HIHideMenuBar = false;
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
