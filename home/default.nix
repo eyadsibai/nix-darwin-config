@@ -33,6 +33,6 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.file.".config/.aerospace.toml" = ./aerospace.toml;
+  home.file.".config/.aerospace.toml" = {source = ./aerospace.toml;};
 
 }
