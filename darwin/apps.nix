@@ -27,7 +27,9 @@
     curl
     aria2
     httpie
+    duf
   ];
+
   environment.variables.EDITOR = "nvim";
 
   programs.gnupg.agent.enable = true;
@@ -75,7 +77,8 @@
       "homebrew/services"
       "homebrew/bundle"
       "FelixKratz/formulae"
-	  "nikitabobko/tap"
+      "FelixKratz/formulaebrew"
+      "nikitabobko/tap"
     ];
 
     # `brew install`
@@ -91,6 +94,7 @@
       "btop"
       "bat"
       "tldr"
+      "m-cli"
     ];
 
     # `brew install --cask`
@@ -219,6 +223,7 @@
       # "font-tinos-nerd-font"
       "font-ubuntu-nerd-font"
       # "font-victor-mono-nerd-font"
+      "font-sf-pro"
 
       "twist"
 
@@ -232,8 +237,9 @@
       "wave"
 
       "aerospace"
+      "sketchybar"
     ];
   };
-    
+
   #services = {tailscale.enable = true;};
 }

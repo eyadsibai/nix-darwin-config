@@ -57,8 +57,6 @@
       nix-direnv.enable = true;
     };
 
-
-
     #   vscode = {
     #      enable=true;
     #        extensions = with pkgs.vscode-extensions; [
@@ -70,5 +68,4 @@
     # ];
     #   };
   };
-
 }

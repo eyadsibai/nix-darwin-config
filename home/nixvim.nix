@@ -15,14 +15,12 @@
       diffview.enable = true;
 
       neogit.enable = true;
-      
     };
 
     opts = {
       number = true;
       relativenumber = true;
       shiftwidth = 2;
-
     };
   };
 }

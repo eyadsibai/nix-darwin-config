@@ -28,4 +28,8 @@
   programs.zellij = {
     enable = true;
   };
+
+  programs.yazi = {
+    enable = true;
+  };
 }
