@@ -109,15 +109,15 @@
       "discord"
       "webex-meetings"
       "spotify"
-      "anki"
+    
       "iina" # video player
-      "raycast" # (HotKey: alt/option + space)search, caculate and run scripts(with many plugins)
+      "raycast" 
       "stats" # beautiful system monitor
-      "eudic" # 欧路词典
+   
 
       # Development
       "insomnia" # REST client
-      "wireshark" # network analyzer
+     #  "wireshark" # network analyzer
 
       "chatgpt"
 
@@ -136,7 +136,7 @@
 
       "messenger"
       "raycast"
-      "vlc"
+    #  "vlc"
       "yandex-disk"
       "readdle-spark"
       # "neovide"
@@ -164,10 +164,9 @@
       "ticktick"
       "tailscale"
       "iina"
-      "lapce"
-      "zed"
-      "marginnote"
-      "sitesucker-pro"
+     # "lapce"
+     #  "zed"
+     # "sitesucker-pro"
 
       "microsoft-remote-desktop"
       "orion"
@@ -232,12 +231,13 @@
       "raindropio"
       "logseq"
       "hiddenbar"
-      "alt-tab"
-      "amazon-q"
-      "wave"
+     # "alt-tab"
+     # "amazon-q"
+     # "wave"
 
       "aerospace"
-      "sketchybar"
+    #  "sketchybar"
+    #  "borderszz"
     ];
   };
 
