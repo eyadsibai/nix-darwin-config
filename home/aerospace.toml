@@ -15,12 +15,13 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
- #   'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
-        # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color="glow(0xd943ff64)" inactive_color=0x20494d64 width=8.0'
+     'exec-and-forget borders active_color="glow(0xffe1e3e4)" inactive_color=0xff494d64 width=5.0',
+   'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
+        # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color="glow(0xd943ff64)" inactive_color=0x20494d64 width=5.0'
 ]
 
 exec-on-workspace-change = [
-#'/bin/bash', '-c',    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+'/bin/bash', '-c',    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
         # '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE'
 
     ]
@@ -29,13 +30,13 @@ exec-on-workspace-change = [
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
+enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 20
+# accordion-padding = 20
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -76,10 +77,10 @@ outer.right =      10
 
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
-# [exec]                   # Again, you don't need to copy all config sections to your config.
-# inherit-env-vars = true  # If you don't touch "exec" section,
-# [exec.env-vars]          # it will fallback to "default-config.toml"
-# PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+[exec]                   # Again, you don't need to copy all config sections to your config.
+inherit-env-vars = true  # If you don't touch "exec" section,
+[exec.env-vars]          # it will fallback to "default-config.toml"
+PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -110,12 +111,19 @@ outer.right =      10
 # end tell'
 # '''
 
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
 alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+# alt-comma = 'layout accordion horizontal vertical'
+
+# Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
+alt-g = 'split horizontal'
+alt-v = 'split vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -123,11 +131,22 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
+alt-left = 'focus left'
+alt-down = 'focus down'
+alt-up = 'focus up'
+alt-right = 'focus right'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
+
+alt-shift-left = 'move left'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+alt-shift-right = 'move right'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
@@ -165,7 +184,7 @@ alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
+# alt-shift-semicolon = 'mode service'
 
 alt-f = 'fullscreen'
 # alt-g = 'split horizontal'
@@ -177,19 +196,25 @@ alt-shift-c = 'reload-config'
 
 alt-r = 'mode resize'
 
+alt-shift-r = ['exec-and-forget /opt/homebrew/bin/sketchybar --reload']
 
-[mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
 
-# alt-shift-r = ['exec-and-forget /opt/homebrew/bin/sketchybar --reload']
+# [mode.service.binding]
+# esc = ['reload-config', 'mode main']
+# r = ['flatten-workspace-tree', 'mode main'] # reset layout
+# #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+# f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+# backspace = ['close-all-windows-but-current', 'mode main']
+# alt-shift-h = ['join-with left', 'mode main']
+# alt-shift-j = ['join-with down', 'mode main']
+# alt-shift-k = ['join-with up', 'mode main']
+# alt-shift-l = ['join-with right', 'mode main']
+# 
+# alt-shift-left = ['join-with left', 'mode main']
+# alt-shift-down = ['join-with down', 'mode main']
+# alt-shift-up = ['join-with up', 'mode main']
+# alt-shift-right = ['join-with right', 'mode main']
+
 
 
 [mode.resize.binding]

@@ -78,6 +78,7 @@
       "homebrew/bundle"
       "FelixKratz/formulae"
       "nikitabobko/tap"
+	  "dimentium/autoraise"
     ];
 
     # `brew install`
@@ -94,6 +95,9 @@
       "bat"
       "tldr"
       "m-cli"
+      
+     "sketchybar"
+      "borders"
     ];
 
     # `brew install --cask`
@@ -235,8 +239,6 @@
      # "wave"
 
       "aerospace"
-    #  "sketchybar"
-    #  "borderszz"
     ];
   };
 
