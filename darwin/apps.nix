@@ -77,7 +77,6 @@
       "homebrew/services"
       "homebrew/bundle"
       "FelixKratz/formulae"
-      "FelixKratz/formulaebrew"
       "nikitabobko/tap"
     ];
 
