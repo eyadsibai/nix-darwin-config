@@ -1,23 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-SPACE_SIDS=$(/opt/homebrew/bin/aerospace list-workspaces --all);
-
-sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_workspace_change 
 
 
-for sid in "${SPACE_SIDS[@]}"
-do
-  sketchybar --add space space.$sid left \
-          --subscribe space.$sid aerospace_workspace_change \
-                                 \
-             --set space.$sid                                \
-                              icon=$sid                                  \
-                              label.font="sketchybar-app-font:Regular:14.0" \
-                              label.padding_right=20                     \
-                              label.y_offset=-1                          \
-                              script="$PLUGIN_DIR/space.sh"             \
-                              click_script="/opt/homebrew/bin/aerospace workspace $sid"               
+for sid in $(/opt/homebrew/bin/aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid space=$sid \
+        icon=$sid \
+        label.font="sketchybar-app-font:Regular:12.0" \
+        label.padding_right=10 \
+        label.y_offset=-1 \
+        click_script="/opt/homebrew/bin/aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/space.sh $sid"
 done
+
+
 
 sketchybar --add item space_separator left             \                \
            --set space_separator icon="􀆊"                                \
