@@ -35,9 +35,13 @@
   programs.home-manager.enable = true;
 
   home.file.".config/aerospace/aerospace.toml" = {source = ./aerospace.toml;};
-  home.file.".config/sketchybar/sketchybarrc" = {source = ./sketchybar/sketchybarrc;};
-home.file.".config/sketchybar/plugins" = {
-  source = ./sketchybar/plugins;
+#   home.file.".config/sketchybar/sketchybarrc" = {source = ./sketchybar/sketchybarrc;};
+# 	home.file.".config/sketchybar/plugins" = {
+#   source = ./sketchybar/plugins;
+#   recursive = true;
+# };
+	home.file.".config/sketchybar" = {
+  source = ./sketchybar;
   recursive = true;
 };
 }

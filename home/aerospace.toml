@@ -16,12 +16,11 @@ after-login-command = []
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
      'exec-and-forget borders active_color="glow(0xffe1e3e4)" inactive_color=0xff494d64 width=5.0',
-   'exec-and-forget /opt/homebrew/opt/sketchybar/bin/sketchybar',
         # 'exec-and-forget /opt/homebrew/opt/borders/bin/borders active_color="glow(0xd943ff64)" inactive_color=0x20494d64 width=5.0'
 ]
 
 exec-on-workspace-change = [
-'/bin/bash', '-c',    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# '/bin/bash', '-c',    '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
         # '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE'
 
     ]
@@ -30,7 +29,7 @@ exec-on-workspace-change = [
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
+enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
@@ -119,11 +118,11 @@ alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
-# alt-comma = 'layout accordion horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
 
 # Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
-alt-g = 'split horizontal'
-alt-v = 'split vertical'
+# alt-g = 'split horizontal'
+# alt-v = 'split vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -227,9 +226,9 @@ enter = 'mode main'
 esc = 'mode main'
 
 # aerospace list-apps
-[[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 1"
+# [[on-window-detected]]
+# if.app-id = 'com.github.wez.wezterm'
+# run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
