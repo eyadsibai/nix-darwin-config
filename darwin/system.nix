@@ -24,13 +24,13 @@
         show-process-indicators = false;
         static-only = true;
 
-        # customize Hot Corners(触发角, 鼠标移动到屏幕角落时触发的动作)
-        wvous-tl-corner = 2; # top-left - Mission Control
-        wvous-tr-corner = 13; # top-right - Lock Screen
-        wvous-bl-corner = 3; # bottom-left - Application Windows
-        wvous-br-corner = 4; # bottom-right - Desktop
+        # customize Hot Corners
+        # wvous-tl-corner = 2; # top-left - Mission Control
+        # wvous-tr-corner = 13; # top-right - Lock Screen
+        # wvous-bl-corner = 3; # bottom-left - Application Windows
+        # wvous-br-corner = 4; # bottom-right - Desktop
 
-        tilesize = 48;
+        tilesize = 32;
 
         # Whether to arrange spaces based on most recent use
         mru-spaces = false;

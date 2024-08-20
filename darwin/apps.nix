@@ -226,7 +226,7 @@
       "font-ubuntu-nerd-font"
       # "font-victor-mono-nerd-font"
       "font-sf-pro"
-
+	  "sf-symbols"	  
       "twist"
 
       "intellij-idea"
@@ -239,6 +239,7 @@
      # "wave"
 
       "aerospace"
+	"cursor"
     ];
   };
 
