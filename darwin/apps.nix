@@ -35,6 +35,10 @@
   programs.gnupg.agent.enable = true;
   programs.nix-index.enable = true;
 
+  fonts.packages = [
+  	pkgs.sketchybar-app-font
+  ];
+
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
   # The apps installed by homebrew are not managed by nix, and not reproducible!
