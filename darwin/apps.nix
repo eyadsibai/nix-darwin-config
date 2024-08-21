@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -123,7 +123,6 @@
       "iina" # video player
       "raycast"
       "stats" # beautiful system monitor
-
 
       # Development
       "insomnia" # REST client
@@ -251,10 +250,7 @@
       "imageoptim"
       "transnomino"
       "localsend"
-
     ];
-
-
   };
 
   #services = {tailscale.enable = true;};

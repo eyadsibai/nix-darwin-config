@@ -1,10 +1,9 @@
-{ pkgs
-, nixvim
-, username
-, ...
-}:
-
 {
+  pkgs,
+  nixvim,
+  username,
+  ...
+}: {
   programs.helix.enable = true;
   programs.helix = {
     #    language = [{
@@ -17,7 +16,7 @@
         lsp.display-messages = true;
         bufferline = "always";
         text-width = 79;
-        rulers = [ 80 ];
+        rulers = [80];
         auto-save = true;
         whitespace.render = {
           newline = "all";
@@ -36,5 +35,4 @@
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
   programs.jq.enable = true;
-
 }
