@@ -12,6 +12,8 @@
 {
   system = {
     defaults = {
+
+      
       menuExtraClock.Show24Hour = true; # show 24 hour clock
 
       # customize dock
@@ -35,6 +37,9 @@
         # Whether to arrange spaces based on most recent use
         mru-spaces = false;
         launchanim = true;
+
+        # see https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+        expose-group-apps = true; 
       };
 
       # customize finder
@@ -58,6 +63,8 @@
         # Enable silent clicking
         ActuationStrength = 0;
       };
+
+      universalaccess.reduceMotion = true;
 
       # Trackpad speed, 0 to 3
       #     "com.apple.trackpad.scaling" = 1.0;
@@ -123,6 +130,10 @@
         "com.apple.sound.beep.volume" = 0.0;
       };
 
+      # one space spans across all physical displays
+      spaces.spans-displays = true; 
+
+
       # Customize settings that not supported by nix-darwin directly
       # see the source code of this project to get more undocumented options:
       #    https://github.com/rgcr/m-cli
@@ -177,7 +188,9 @@
         # Prevent Photos from opening automatically when devices are plugged in
         "com.apple.ImageCapture".disableHotPlug = true;
 
-        "com.apple.dock" = {"expose-group-apps" = true;};
+        
+
+        # "com.apple.dock" = {"expose-group-apps" = true;};
       };
 
       loginwindow = {

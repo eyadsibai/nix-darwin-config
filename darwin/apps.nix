@@ -250,6 +250,9 @@
       "imageoptim"
       "transnomino"
       "localsend"
+	  "cardhop"
+	  "fantastical"
+
     ];
   };
 
