@@ -34,12 +34,15 @@
 
         tilesize = 32;
 
+        dashboard-in-overlay = true; # show dashboard as overlay
+
         # Whether to arrange spaces based on most recent use
         mru-spaces = false;
-        launchanim = true;
+        launchanim = false; # disable launch animation
 
         # see https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
         expose-group-apps = true; 
+
       };
 
       # customize finder
@@ -52,6 +55,7 @@
         ShowStatusBar = true; # show status bar
         AppleShowAllFiles = true;
         CreateDesktop = false;
+        FXDefaultSearchScope = "SCcf"; # When performing a search, search the current folder by default
       };
 
       # customize trackpad
@@ -179,7 +183,7 @@
           askForPasswordDelay = 0;
         };
         "com.apple.screencapture" = {
-          location = "~/Desktop";
+          location = "~/Downloads";
           type = "png";
         };
         "com.apple.AdLib" = {

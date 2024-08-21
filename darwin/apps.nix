@@ -180,6 +180,7 @@
       "microsoft-remote-desktop"
       "orion"
       "flameshot"
+      "lulu"
 
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
