@@ -1,8 +1,7 @@
-{
- pkgs,
-  nixvim,
-  username,
-  ...
+{ pkgs
+, nixvim
+, username
+, ...
 }: {
   # import sub modules
   imports = [
@@ -12,7 +11,10 @@
     ./git.nix
     ./starship.nix
     ./nixvim.nix
+    ./apps.nix
   ];
+
+
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -31,17 +33,19 @@
     stateVersion = "23.11";
   };
 
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.file.".config/aerospace/aerospace.toml" = {source = ./aerospace.toml;};
-#   home.file.".config/sketchybar/sketchybarrc" = {source = ./sketchybar/sketchybarrc;};
-# 	home.file.".config/sketchybar/plugins" = {
-#   source = ./sketchybar/plugins;
-#   recursive = true;
-# };
-	home.file.".config/sketchybar" = {
-  source = ./sketchybar;
-  recursive = true;
-};
+  home.file.".config/aerospace/aerospace.toml" = { source = ./aerospace.toml; };
+  home.file.".config/borders/bordersrc" = { source = ./bordersrc; };
+  #   home.file.".config/sketchybar/sketchybarrc" = {source = ./sketchybar/sketchybarrc;};
+  # 	home.file.".config/sketchybar/plugins" = {
+  #   source = ./sketchybar/plugins;
+  #   recursive = true;
+  # };
+  home.file.".config/sketchybar" = {
+    source = ./sketchybar;
+    recursive = true;
+  };
 }

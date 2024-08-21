@@ -50,57 +50,59 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    darwin,
-    home-manager,
-    stylix,
-    nix-index-database,
-    nixvim,
-    ...
-  }: let
-    username = "eyad";
-    useremail = "eyad.alsibai@gmail.com";
-    system = "aarch64-darwin";
-    hostname = "${username}-m3";
-    specialArgs =
-      inputs
-      // {
-        inherit username useremail hostname nixvim;
+  outputs =
+    inputs @ { self
+    , nixpkgs
+    , darwin
+    , home-manager
+    , stylix
+    , nix-index-database
+    , nixvim
+    , ...
+    }:
+    let
+      username = "eyad";
+      useremail = "eyad.alsibai@gmail.com";
+      system = "aarch64-darwin";
+      hostname = "${username}-m3";
+      specialArgs =
+        inputs
+        // {
+          inherit username useremail hostname nixvim;
+        };
+    in
+    {
+      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
+        inherit system specialArgs;
+        modules = [
+          ./darwin/nix-core.nix
+          ./darwin/system.nix
+          ./darwin/apps.nix
+          ./darwin/host-users.nix
+          stylix.darwinModules.stylix
+          {
+            stylix.enable = true;
+            stylix.image = ./wallpaper.png;
+            stylix.polarity = "dark";
+          }
+
+          nix-index-database.darwinModules.nix-index
+          # optional to also wrap and install comma
+          { programs.nix-index-database.comma.enable = true; }
+
+          # home manager
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.backupFileExtension = "bak";
+            home-manager.users.${username} = import ./home;
+          }
+        ];
       };
-  in {
-    darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-      inherit system specialArgs;
-      modules = [
-        ./darwin/nix-core.nix
-        ./darwin/system.nix
-        ./darwin/apps.nix
-        ./darwin/host-users.nix
-        stylix.darwinModules.stylix
-        {
-          stylix.enable = true;
-          stylix.image = ./wallpaper.png;
-          stylix.polarity = "dark";
-        }
 
-        nix-index-database.darwinModules.nix-index
-        # optional to also wrap and install comma
-        {programs.nix-index-database.comma.enable = true;}
-
-        # home manager
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
-          home-manager.backupFileExtension = "bak";
-          home-manager.users.${username} = import ./home;
-        }
-      ];
+      # nix code formatter
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     };
-
-    # nix code formatter
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-  };
 }

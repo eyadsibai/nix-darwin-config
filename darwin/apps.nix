@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -36,7 +36,7 @@
   programs.nix-index.enable = true;
 
   fonts.packages = [
-  	pkgs.sketchybar-app-font
+    pkgs.sketchybar-app-font
   ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -65,6 +65,13 @@
       pages = 409201541;
       "amazon prime videos" = 545519333;
       bitwarden = 1352778147;
+      Vimari = 1480933944;
+      grab2text = 6475956137;
+      # "Microsoft OneNote" = 410396684;
+      # "Microsoft Outlook" = 985367838;
+      # "Microsoft Teams" = 1417478139;
+      # "Microsoft Remote Desktop" = 1295203466;
+      # "Microsoft Excel" = 462058435;
       # "Microsoft Word" = 462054704;
       # "Microsoft PowerPoint" = 462062816;
 
@@ -82,7 +89,8 @@
       "homebrew/bundle"
       "FelixKratz/formulae"
       "nikitabobko/tap"
-	  "dimentium/autoraise"
+      "dimentium/autoraise"
+      "localsend/localsend"
     ];
 
     # `brew install`
@@ -90,17 +98,12 @@
     brews = [
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "bitwarden-cli"
-      "yt-dlp"
-      "kakoune"
-      "helix"
       "atuin"
       "dust"
-      "btop"
-      "bat"
       "tldr"
       "m-cli"
-      
-     "sketchybar"
+
+      "sketchybar"
       "borders"
     ];
 
@@ -116,15 +119,15 @@
       "discord"
       "webex-meetings"
       "spotify"
-    
+
       "iina" # video player
-      "raycast" 
+      "raycast"
       "stats" # beautiful system monitor
-   
+
 
       # Development
       "insomnia" # REST client
-     #  "wireshark" # network analyzer
+      #  "wireshark" # network analyzer
 
       "chatgpt"
 
@@ -143,7 +146,7 @@
 
       "messenger"
       "raycast"
-    #  "vlc"
+      #  "vlc"
       "yandex-disk"
       "readdle-spark"
       # "neovide"
@@ -171,9 +174,9 @@
       "ticktick"
       "tailscale"
       "iina"
-     # "lapce"
-     #  "zed"
-     # "sitesucker-pro"
+      # "lapce"
+      #  "zed"
+      # "sitesucker-pro"
 
       "microsoft-remote-desktop"
       "orion"
@@ -230,21 +233,28 @@
       "font-ubuntu-nerd-font"
       # "font-victor-mono-nerd-font"
       "font-sf-pro"
-	  "sf-symbols"	  
+      "sf-symbols"
       "twist"
-
+      "font-sf-mono"
       "intellij-idea"
       "anytype"
       "raindropio"
       "logseq"
       "hiddenbar"
-     # "alt-tab"
-     # "amazon-q"
-     # "wave"
+      # "alt-tab"
+      # "amazon-q"
+      # "wave"
 
       "aerospace"
-	"cursor"
+      "cursor"
+      "rocket"
+      "imageoptim"
+      "transnomino"
+      "localsend"
+
     ];
+
+
   };
 
   #services = {tailscale.enable = true;};

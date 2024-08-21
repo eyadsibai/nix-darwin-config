@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 ###################################################################################
 #
 #  macOS's System configuration
@@ -177,7 +177,7 @@
         # Prevent Photos from opening automatically when devices are plugged in
         "com.apple.ImageCapture".disableHotPlug = true;
 
-        "com.apple.dock" = {"expose-group-apps" = true;};
+        "com.apple.dock" = { "expose-group-apps" = true; };
       };
 
       loginwindow = {

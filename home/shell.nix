@@ -1,11 +1,11 @@
-{...}: {
+{ ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     initExtra = ''
-    if [[ $(uname -m) == 'arm64' ]]; then
-     eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi'';
+      if [[ $(uname -m) == 'arm64' ]]; then
+       eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi'';
     # bashrcExtra = ''
     #   export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     # '';

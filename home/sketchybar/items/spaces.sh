@@ -24,7 +24,6 @@ for sid in $(aerospace list-workspaces --all); do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         icon=$sid \
-        icon.padding_left=4
         click_script="aerospace workspace $sid" \
         script="$CONFIG_DIR/plugins/space.sh $sid"
 done

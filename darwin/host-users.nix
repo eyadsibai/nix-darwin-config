@@ -1,7 +1,6 @@
-{
-  username,
-  hostname,
-  ...
+{ username
+, hostname
+, ...
 } @ args:
 #############################################################
 #
@@ -19,5 +18,5 @@
     description = username;
   };
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = [ username ];
 }
