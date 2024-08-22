@@ -41,7 +41,7 @@
         launchanim = false; # disable launch animation
 
         # see https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
-        expose-group-apps = true; 
+        # expose-group-apps = true; 
 
       };
 
@@ -68,7 +68,7 @@
         ActuationStrength = 0;
       };
 
-      universalaccess.reduceMotion = true;
+      # universalaccess.reduceMotion = true;
 
       # Trackpad speed, 0 to 3
       #     "com.apple.trackpad.scaling" = 1.0;
