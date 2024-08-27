@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [ "$SENDER" = "space_windows_change" ]; then
-  space="$(echo "$INFO" | jq -r '.space')"
-  apps="$(echo "$INFO" | jq -r '.apps | keys[]')"
+  space="$(aerospace list-workspaces focused)"
+  apps="$(eaerospace list-windows --workspace "$space" | awk -F'|' '{print $2}' | xargs)"
 
   icon_strip=" "
   if [ "${apps}" != "" ]; then

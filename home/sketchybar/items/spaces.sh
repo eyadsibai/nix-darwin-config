@@ -26,6 +26,15 @@ for sid in $(aerospace list-workspaces --all); do
         script="$CONFIG_DIR/plugins/space.sh $sid"
 done
 
+sketchybar --add item space_separator left             \                \
+           --set space_separator icon="􀆊"                                \
+                                 icon.color=$ACCENT_COLOR \
+                                 icon.padding_left=4                   \
+                                 label.drawing=off                     \
+                                 background.drawing=off                \
+                                 script="$PLUGIN_DIR/space_windows.sh" \
+           --subscribe space_separator space_windows_change
+
 
 # DOES NOT WORK WITH AEROSPACE SPACES
 # sketchybar --add item space_separator left             \                \

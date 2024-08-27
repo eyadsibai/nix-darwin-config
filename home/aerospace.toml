@@ -189,11 +189,11 @@ alt-f = 'fullscreen'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 
-alt-shift-c = 'reload-config'
+# alt-shift-c = 'reload-config'
 
 alt-r = 'mode resize'
 
-alt-shift-r = ['exec-and-forget /opt/homebrew/bin/sketchybar --reload']
+alt-shift-r = ['exec-and-forget sketchybar --reload', 'reload-config']
 alt-shift-space = ['exec-and-forget /opt/homebrew/bin/sketchybar --bar hidden=toggle']
 
 
