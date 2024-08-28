@@ -2,7 +2,7 @@
 
 if [ "$SENDER" = "space_windows_change" ]; then
   space="$(aerospace list-workspaces focused)"
-  apps="$(eaerospace list-windows --workspace "$space" | awk -F'|' '{print $2}' | xargs)"
+  apps="$(aerospace list-windows --workspace "$space" | awk -F'|' '{print $2}' | xargs)"
 
   icon_strip=" "
   if [ "${apps}" != "" ]; then

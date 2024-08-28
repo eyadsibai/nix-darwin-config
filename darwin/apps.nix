@@ -149,7 +149,7 @@
       "yandex-disk"
       "readdle-spark"
       # "neovide"
-      "logi-options-plus"
+      # "logi-options-plus"
       "slack"
       "discord"
       "zoom"
@@ -239,7 +239,7 @@
       "intellij-idea"
       "anytype"
       "raindropio"
-      "logseq"
+      # "logseq"
       "hiddenbar"
       # "alt-tab"
       # "amazon-q"
@@ -251,8 +251,8 @@
       "imageoptim"
       "transnomino"
       "localsend"
-	  "cardhop"
-	  "fantastical"
+	  # "cardhop"
+	  # "fantastical"
 
     ];
   };
