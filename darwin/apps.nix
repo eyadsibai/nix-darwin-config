@@ -251,9 +251,9 @@
       "imageoptim"
       "transnomino"
       "localsend"
-	  # "cardhop"
-	  # "fantastical"
-
+      # "cardhop"
+      # "fantastical"
+      "capacities"
     ];
   };
 

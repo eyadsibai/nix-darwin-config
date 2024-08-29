@@ -12,8 +12,6 @@
 {
   system = {
     defaults = {
-
-      
       menuExtraClock.Show24Hour = true; # show 24 hour clock
 
       # customize dock
@@ -41,8 +39,7 @@
         launchanim = false; # disable launch animation
 
         # see https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
-        # expose-group-apps = true; 
-
+        # expose-group-apps = true;
       };
 
       # customize finder
@@ -135,8 +132,7 @@
       };
 
       # one space spans across all physical displays
-      spaces.spans-displays = true; 
-
+      spaces.spans-displays = true;
 
       # Customize settings that not supported by nix-darwin directly
       # see the source code of this project to get more undocumented options:
@@ -191,8 +187,6 @@
         };
         # Prevent Photos from opening automatically when devices are plugged in
         "com.apple.ImageCapture".disableHotPlug = true;
-
-        
 
         # "com.apple.dock" = {"expose-group-apps" = true;};
       };
