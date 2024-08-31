@@ -258,7 +258,6 @@
       "capacities"
 	  "zed"
 	  "boop"
-	  
     ];
   };
 
