@@ -176,7 +176,7 @@
       "tailscale"
       "iina"
       # "lapce"
-       # "sitesucker-pro"
+      # "sitesucker-pro"
 
       "microsoft-remote-desktop"
       "orion"
@@ -215,7 +215,7 @@
       # "font-im-writing-nerd-font"
       "font-iosevka-nerd-font"
       "font-jetbrains-mono-nerd-font"
-      
+
       # "font-lekton-nerd-font"
       # "font-liberation-nerd-font"
       "font-meslo-lg-nerd-font"
@@ -256,9 +256,10 @@
       # "cardhop"
       # "fantastical"
       "capacities"
-	  "zed"
-	  "boop"
-"reader"
+      "zed"
+      "boop"
+      "reader"
+      "netdownloadhelpercoapp"
     ];
   };
 
