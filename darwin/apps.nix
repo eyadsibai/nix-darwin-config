@@ -258,6 +258,7 @@
       "capacities"
 	  "zed"
 	  "boop"
+"reader"
     ];
   };
 
