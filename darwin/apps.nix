@@ -107,6 +107,7 @@
 
       "sketchybar"
       "borders"
+      "spotify_player"
     ];
 
     # `brew install --cask`
@@ -260,6 +261,8 @@
       "boop"
       "reader"
       "netdownloadhelpercoapp"
+      "dupeguru"
+      "microsoft-office"
     ];
   };
 

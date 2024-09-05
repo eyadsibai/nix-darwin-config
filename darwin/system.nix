@@ -24,11 +24,24 @@
         show-process-indicators = false;
         static-only = true;
 
+        # 1: Disabled
+        # 2: Mission Control
+        # 3: Application Windows
+        # 4: Desktop
+        # 5: Start Screen Saver
+        # 6: Disable Screen Saver
+        # 7: Dashboard
+        # 10: Put Display to Sleep
+        # 11: Launchpad
+        # 12: Notification Center
+        # 13: Lock Screen
+        # 14: Quick Note
+
         # customize Hot Corners
-        # wvous-tl-corner = 2; # top-left - Mission Control
-        # wvous-tr-corner = 13; # top-right - Lock Screen
-        # wvous-bl-corner = 3; # bottom-left - Application Windows
-        # wvous-br-corner = 4; # bottom-right - Desktop
+        wvous-tl-corner = 1; # top-left
+        wvous-tr-corner = 1; # top-right
+        wvous-bl-corner = 1; # bottom-left
+        wvous-br-corner = 1; # bottom-right
 
         tilesize = 32;
 
