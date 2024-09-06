@@ -8,6 +8,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -32,12 +33,12 @@
     auto-optimise-store = true;
   };
 
-  nix = {
-    extraOptions =
-      ''
-      ''
-      + pkgs.lib.optionalString (pkgs.system == "aarch64-darwin") ''
-        extra-platforms = x86_64-darwin aarch64-darwin
-      '';
-  };
+  # nix = {
+  #   extraOptions =
+  #     ''
+  #     ''
+  #     + pkgs.lib.optionalString (pkgs.system == "aarch64-darwin") ''
+  #       extra-platforms = x86_64-darwin aarch64-darwin
+  #     '';
+  # };
 }

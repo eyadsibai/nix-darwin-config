@@ -28,7 +28,7 @@
     aria2
     httpie
     duf
-
+    devbox
     feh
   ];
 

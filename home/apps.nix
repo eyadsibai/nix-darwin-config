@@ -4,8 +4,8 @@
   username,
   ...
 }: {
-  programs.helix.enable = true;
   programs.helix = {
+    enable = true;
     #    language = [{
     #   name = "rust";
     #   auto-format = false;
@@ -35,4 +35,5 @@
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
   programs.jq.enable = true;
+  programs.zathura.enable = true;
 }
