@@ -16,7 +16,6 @@
     enable = true;
     lfs.enable = true;
 
-    # TODO replace with your own name & email
     userName = "eyadsibai";
     userEmail = useremail;
 
@@ -29,7 +28,7 @@
     ];
 
     extraConfig = {
-      init.defaultBranch = "main";
+      init.defaultBranch = "master";
       push.autoSetupRemote = true;
       pull.rebase = true;
     };
