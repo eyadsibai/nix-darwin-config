@@ -1,6 +1,6 @@
 {inputs, ...}: {
   programs.nixvim = {
-    enable = false;
+    enable = true;
 
     # colorschemes.gruvbox.enable = true;
 

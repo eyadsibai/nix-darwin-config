@@ -30,6 +30,8 @@
     duf
     devbox
     feh
+	diff-pdf
+	nb
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -263,6 +265,7 @@
       "netdownloadhelpercoapp"
       "dupeguru"
       "microsoft-office"
+"siyuan"
     ];
   };
 
