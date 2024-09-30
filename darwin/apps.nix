@@ -30,9 +30,9 @@
     duf
     devbox
     feh
-	diff-pdf
-	nb
-texlive.combined.scheme-full	
+    diff-pdf
+    nb
+    texlive.combined.scheme-full
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -266,7 +266,7 @@ texlive.combined.scheme-full
       "netdownloadhelpercoapp"
       "dupeguru"
       "microsoft-office"
-"siyuan"
+      "siyuan"
     ];
   };
 
