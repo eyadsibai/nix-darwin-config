@@ -32,6 +32,7 @@
     feh
 	diff-pdf
 	nb
+texlive.combined.scheme-full	
   ];
 
   environment.variables.EDITOR = "nvim";
