@@ -140,7 +140,7 @@
       # "adobe-creative-cloud"
       #     "handbrake"
       # "obs"
-
+	  "shottr"
       "the-unarchiver"
       "appcleaner"
       # "todoist"
@@ -181,7 +181,7 @@
       "iina"
       # "lapce"
       # "sitesucker-pro"
-
+   	  "microsoft-teams"
       "microsoft-remote-desktop"
       "orion"
       "flameshot"
@@ -252,11 +252,13 @@
       # "wave"
 
       "aerospace"
-      "cursor"
+     # "cursor"
       "rocket"
       "imageoptim"
       "transnomino"
       "localsend"
+
+
       # "cardhop"
       # "fantastical"
       "capacities"
@@ -265,7 +267,7 @@
       "reader"
       "netdownloadhelpercoapp"
       "dupeguru"
-      "microsoft-office"
+     # "microsoft-office"
       "siyuan"
     ];
   };
