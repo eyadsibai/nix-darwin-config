@@ -42,7 +42,7 @@
     eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     # skim provides a single executable: sk.
