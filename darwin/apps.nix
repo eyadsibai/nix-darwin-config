@@ -269,6 +269,9 @@
       "dupeguru"
      # "microsoft-office"
       "siyuan"
+
+"rstudio"
+
     ];
   };
 
