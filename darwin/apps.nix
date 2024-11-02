@@ -101,6 +101,7 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
+	  "r"
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "bitwarden-cli"
       "atuin"
@@ -185,7 +186,7 @@
       "microsoft-remote-desktop"
       "orion"
       "flameshot"
-      "lulu"
+     
 
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
@@ -266,10 +267,13 @@
       "reader"
       "netdownloadhelpercoapp"
       "dupeguru"
-      # "microsoft-office"
+      "microsoft-office"
       "siyuan"
 
       "rstudio"
+
+      "steam"
+      "emby"
     ];
   };
 
