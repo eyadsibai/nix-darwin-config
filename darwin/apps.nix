@@ -274,6 +274,7 @@
 
       "steam"
       "emby"
+	  "claude"
     ];
   };
 
