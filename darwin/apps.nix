@@ -187,7 +187,6 @@
       "orion"
       "flameshot"
      
-
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
       # "font-inconsolata-go-nerd-font"
@@ -275,6 +274,9 @@
       "steam"
       "emby"
 	  "claude"
+	  "losslesscut"
+
+
     ];
   };
 
