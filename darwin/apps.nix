@@ -275,7 +275,8 @@
       "emby"
 	  "claude"
 	  "losslesscut"
-
+	  "canva"
+	  "handbrake"
 
     ];
   };

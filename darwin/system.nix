@@ -264,19 +264,20 @@
       # icon fonts
       material-design-icons
       font-awesome
-
-      # nerdfonts
-      # https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/data/fonts/nerdfonts/shas.nix
-      (nerdfonts.override {
-        fonts = [
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
+	  nerd-fonts.symbols-only
+  #    (nerd-fonts.override {
+   #     fonts = [
           # symbols icon only
-          "NerdFontsSymbolsOnly"
+    #      "NerdFontsSymbolsOnly"
           # Characters
-          "FiraCode"
-          "JetBrainsMono"
-          "Iosevka"
-        ];
-      })
+        #  "FiraCode"
+        #  "JetBrainsMono"
+        #  "Iosevka"
+     #   ];
+     # })
     ];
   };
 }
