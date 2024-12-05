@@ -33,6 +33,7 @@
     diff-pdf
     nb
     texlive.combined.scheme-full
+	cointop
   ];
 
   environment.variables.EDITOR = "nvim";
