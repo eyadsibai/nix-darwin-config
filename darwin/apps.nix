@@ -34,6 +34,7 @@
     nb
     texlive.combined.scheme-full
 	cointop
+	colima
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -113,6 +114,7 @@
       "sketchybar"
       "borders"
       "spotify_player"
+      "docker"
     ];
 
     # `brew install --cask`
