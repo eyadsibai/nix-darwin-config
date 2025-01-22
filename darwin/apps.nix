@@ -32,7 +32,7 @@
     feh
     diff-pdf
     nb
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 	cointop
 	colima
   ];
@@ -280,7 +280,8 @@
 	  "losslesscut"
 	  "canva"
 	  "handbrake"
-
+      "ghostty"
+	  "whatsapp"
     ];
   };
 
