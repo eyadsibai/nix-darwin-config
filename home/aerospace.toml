@@ -111,7 +111,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 cmd-h = [] # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
 
-alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout

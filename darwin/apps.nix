@@ -89,6 +89,7 @@
       # WeCom = 1189898970;  # Wechat for Work
       # TecentMetting = 1484048379;
       # QQMusic = 595615424;
+	trello = 1278508951;
     };
 
     taps = [
@@ -115,6 +116,8 @@
       "borders"
       "spotify_player"
       "docker"
+      "lazysql"
+	"ffmpeg"
     ];
 
     # `brew install --cask`
@@ -282,6 +285,7 @@
 	  "handbrake"
       "ghostty"
 	  "whatsapp"
+	  "huggingchat"
     ];
   };
 
