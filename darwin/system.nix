@@ -235,8 +235,9 @@
   # Add ability to used TouchID for sudo authentication
   # Enable sudo authentication with Touch ID
   security = {
-    pam.services.sudo_local.enableSudoTouchIdAuth = true;
+    pam.services.sudo_local.touchIdAuth = true;
     sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
+
   };
   # Enable linux builder VM.
   # This setting relies on having access to a cached version of the builder, since Darwin can't build it itself. The configuration options of the builder *can* be changed, but requires access to a (in this case) aarch64-linux builder to build. Hence on a new machine, or if there's any problems with the existing builder, the build fails.
