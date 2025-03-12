@@ -286,6 +286,7 @@
       "ghostty"
 	  "whatsapp"
 	  "huggingchat"
+	  "actual"
     ];
   };
 

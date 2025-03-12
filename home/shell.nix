@@ -29,9 +29,9 @@
     enableBashIntegration = true;
   };
 
-  programs.zellij = {
-    enable = true;
-  };
+  # programs.zellij = {
+  #   enable = true;
+  # };
 
   programs.yazi = {
     enable = true;
