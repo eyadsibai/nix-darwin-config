@@ -90,6 +90,7 @@
       # TecentMetting = 1484048379;
       # QQMusic = 595615424;
 	trello = 1278508951;
+	windows-app = 1295203466;
     };
 
     taps = [
@@ -118,6 +119,7 @@
       "docker"
       "lazysql"
 	"ffmpeg"
+	"yt-dlp"
     ];
 
     # `brew install --cask`
