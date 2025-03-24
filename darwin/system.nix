@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 ###################################################################################
 #
 #  macOS's System configuration
@@ -267,17 +267,17 @@
       nerd-fonts.fira-code
       nerd-fonts.iosevka
       nerd-fonts.jetbrains-mono
-	  nerd-fonts.symbols-only
-  #    (nerd-fonts.override {
-   #     fonts = [
-          # symbols icon only
-    #      "NerdFontsSymbolsOnly"
-          # Characters
-        #  "FiraCode"
-        #  "JetBrainsMono"
-        #  "Iosevka"
-     #   ];
-     # })
+      nerd-fonts.symbols-only
+      #    (nerd-fonts.override {
+      #     fonts = [
+      # symbols icon only
+      #      "NerdFontsSymbolsOnly"
+      # Characters
+      #  "FiraCode"
+      #  "JetBrainsMono"
+      #  "Iosevka"
+      #   ];
+      # })
     ];
   };
 }

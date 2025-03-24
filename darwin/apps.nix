@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   ##########################################################################
   #
   #  Install all apps and packages here.
@@ -33,8 +33,8 @@
     diff-pdf
     nb
     # texlive.combined.scheme-full
-	cointop
-	colima
+    cointop
+    colima
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -89,8 +89,8 @@
       # WeCom = 1189898970;  # Wechat for Work
       # TecentMetting = 1484048379;
       # QQMusic = 595615424;
-	trello = 1278508951;
-	windows-app = 1295203466;
+      trello = 1278508951;
+      windows-app = 1295203466;
     };
 
     taps = [
@@ -105,7 +105,7 @@
     # `brew install`
     # TODO Feel free to add your favorite apps here.
     brews = [
-	  "r"
+      "r"
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "bitwarden-cli"
       "atuin"
@@ -118,8 +118,8 @@
       "spotify_player"
       "docker"
       "lazysql"
-	"ffmpeg"
-	"yt-dlp"
+      "ffmpeg"
+      "yt-dlp"
     ];
 
     # `brew install --cask`
@@ -194,7 +194,7 @@
       "microsoft-remote-desktop"
       "orion"
       "flameshot"
-     
+
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
       # "font-inconsolata-go-nerd-font"
@@ -259,7 +259,7 @@
       # "amazon-q"
       # "wave"
 
-      "aerospace"
+      # "aerospace"
       # "cursor"
       "rocket"
       "imageoptim"
@@ -281,14 +281,14 @@
 
       "steam"
       "emby"
-	  "claude"
-	  "losslesscut"
-	  "canva"
-	  "handbrake"
+      "claude"
+      "losslesscut"
+      "canva"
+      "handbrake"
       "ghostty"
-	  "whatsapp"
-	  "huggingchat"
-	  "actual"
+      "whatsapp"
+      "huggingchat"
+      "actual"
     ];
   };
 

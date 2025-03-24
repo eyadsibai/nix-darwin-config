@@ -1,8 +1,7 @@
-{
-  pkgs,
-  nixvim,
-  username,
-  ...
+{ pkgs
+, nixvim
+, username
+, ...
 }: {
   # import sub modules
   imports = [
@@ -35,8 +34,8 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.file.".config/aerospace/aerospace.toml" = {source = ./aerospace.toml;};
-  home.file.".config/borders/bordersrc" = {source = ./bordersrc;};
+  # home.file.".config/aerospace/aerospace.toml" = {source = ./aerospace.toml;};
+  home.file.".config/borders/bordersrc" = { source = ./bordersrc; };
   #   home.file.".config/sketchybar/sketchybarrc" = {source = ./sketchybar/sketchybarrc;};
   # 	home.file.".config/sketchybar/plugins" = {
   #   source = ./sketchybar/plugins;

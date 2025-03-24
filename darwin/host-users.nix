@@ -1,7 +1,6 @@
-{
-  username,
-  hostname,
-  ...
+{ username
+, hostname
+, ...
 } @ args:
 #let
 # blockedDomains = ''
@@ -23,5 +22,5 @@
     description = username;
   };
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = [ username ];
 }

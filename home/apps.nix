@@ -1,8 +1,7 @@
-{
-  pkgs,
-  nixvim,
-  username,
-  ...
+{ pkgs
+, nixvim
+, username
+, ...
 }: {
   programs.helix = {
     enable = true;
@@ -16,7 +15,7 @@
         lsp.display-messages = true;
         bufferline = "always";
         text-width = 79;
-        rulers = [80];
+        rulers = [ 80 ];
         auto-save = true;
         whitespace.render = {
           newline = "all";
