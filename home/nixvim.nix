@@ -3,7 +3,7 @@
     enable = true;
 
     # colorschemes.gruvbox.enable = true;
-
+    colorschemes.catppuccin.enable = true;
     plugins = {
       lightline.enable = true;
       nvim-tree.enable = true;

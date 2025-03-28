@@ -276,9 +276,7 @@
       "dupeguru"
       "microsoft-office"
       "siyuan"
-
       "rstudio"
-
       "steam"
       "emby"
       "claude"
