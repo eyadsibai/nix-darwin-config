@@ -120,6 +120,9 @@
       "lazysql"
       "ffmpeg"
       "yt-dlp"
+      "ttyd"
+"kakoune"
+
     ];
 
     # `brew install --cask`
@@ -287,6 +290,10 @@
       "whatsapp"
       "huggingchat"
       "actual"
+	  "trae"
+"plex"
+"lapce"
+
     ];
   };
 
