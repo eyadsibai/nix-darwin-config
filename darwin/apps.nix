@@ -121,8 +121,6 @@
       "ffmpeg"
       "yt-dlp"
       "ttyd"
-"kakoune"
-
     ];
 
     # `brew install --cask`
