@@ -1,4 +1,5 @@
-{ pkgs
+{ lib,
+ pkgs
 , nixvim
 , username
 , ...
@@ -23,7 +24,7 @@
         cursor-shape = {
           insert = "bar";
           normal = "block";
-          visual = "underline";
+          select = "underline";
         };
         inline-diagnostics = {
           cursor-line = "hint";
@@ -256,7 +257,7 @@ keys.normal.space.u = {
       "https://plugins.dprint.dev/markdown-0.17.8.wasm"
     ];
   });
-    }
+    };
   };
   programs.yt-dlp.enable = true;
   programs.kakoune.enable = true;
