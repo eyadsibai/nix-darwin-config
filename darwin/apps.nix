@@ -121,6 +121,10 @@
       "ffmpeg"
       "yt-dlp"
       "ttyd"
+
+	  "ripgrep"
+
+
     ];
 
     # `brew install --cask`
