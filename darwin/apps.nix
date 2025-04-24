@@ -156,6 +156,7 @@
       # "obs"
       "shottr"
       "the-unarchiver"
+      "keka"
       "appcleaner"
       # "todoist"
       "akiflow"
@@ -295,6 +296,7 @@
 	  "trae"
 "plex"
 "lapce"
+"jdownloader"
 
     ];
   };
