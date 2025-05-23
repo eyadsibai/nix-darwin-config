@@ -12,7 +12,6 @@
     ./starship.nix
     ./nixvim.nix
     ./apps.nix
-    ./development.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -42,8 +41,8 @@
   #   source = ./sketchybar/plugins;
   #   recursive = true;
   # };
-  home.file.".config/sketchybar" = {
-    source = ./sketchybar;
-    recursive = true;
-  };
+  # home.file.".config/sketchybar" = {
+  #   source = ./sketchybar;
+  #   recursive = true;
+  # };
 }

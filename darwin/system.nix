@@ -12,6 +12,7 @@
 {
   system.stateVersion = 5;
   system = {
+    primaryUser = "eyad";
     defaults = {
       menuExtraClock.Show24Hour = true; # show 24 hour clock
 

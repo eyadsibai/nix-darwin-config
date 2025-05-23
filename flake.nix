@@ -13,11 +13,11 @@
   # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
   # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
 
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
 
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with the `inputs.nixpkgs` of the current flake,
@@ -26,11 +26,14 @@
     };
 
     darwin = {
-      url = "github:lnl7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -74,7 +77,7 @@
           ./darwin/host-users.nix
           stylix.darwinModules.stylix
           {
-            stylix.enable = true;
+            stylix.enable = false;
             stylix.image = ./wallpaper.png;
             stylix.polarity = "dark";
           }

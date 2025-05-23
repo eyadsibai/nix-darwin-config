@@ -43,7 +43,7 @@
   programs.nix-index.enable = true;
 
   fonts.packages = [
-    pkgs.sketchybar-app-font
+    # pkgs.sketchybar-app-font
   ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -100,6 +100,7 @@
       "nikitabobko/tap"
       "dimentium/autoraise"
       "localsend/localsend"
+      "dnote/dnote"
     ];
 
     # `brew install`
@@ -113,17 +114,16 @@
       "tldr"
       "m-cli"
 
-      "sketchybar"
+      # "sketchybar"
       "borders"
       "spotify_player"
-      "docker"
       "lazysql"
       "ffmpeg"
       "yt-dlp"
       "ttyd"
 
-	  "ripgrep"
-
+      "ripgrep"
+      "dnote"
 
     ];
 
@@ -280,7 +280,8 @@
       "reader"
       "netdownloadhelpercoapp"
       "dupeguru"
-      "microsoft-office"
+      # "microsoft-office"
+
       "siyuan"
       "rstudio"
       "steam"
@@ -293,11 +294,11 @@
       "whatsapp"
       "huggingchat"
       "actual"
-	  "trae"
-"plex"
-"lapce"
-"jdownloader"
-
+      "trae"
+      "plex"
+      "lapce"
+      "jdownloader"
+      "docker"
     ];
   };
 
