@@ -1,104 +1,113 @@
 {
-  description = "Nix for macOS configuration";
+  description = "Ultimate Nix Darwin Configuration for Multiple Devices";
 
-  # the nixConfig here only affects the flake itself, not the system configuration!
-  #  nixConfig = {
-  #     substituters = [
-  #     # Query the mirror of USTC first, and then the official cache.
-  #     "https://mirrors.ustc.edu.cn/nix-channels/store"
-  #     "https://cache.nixos.org"
-  #   ];
-  # };
-
-  # This is the standard format for flake.nix. `inputs` are the dependencies of the flake,
-  # Each item in `inputs` will be passed as a parameter to the `outputs` function after being pulled and built.
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
 
-    # home-manager, used for managing user configuration
+    # Home Manager for user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
-
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs dependencies.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix Darwin for macOS system configuration
     darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Stylix for system theming
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Nix index database for command-not-found
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # NixVim for Neovim configuration
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixvim";
     };
   };
 
-  outputs =
-    inputs @ { self
-    , nixpkgs
-    , darwin
-    , home-manager
-    , stylix
-    , nix-index-database
-    , nixvim
-    , ...
-    }:
+  outputs = inputs @ { self, nixpkgs, darwin, home-manager, stylix, nix-index-database, nixvim, ... }:
     let
+      # User configuration
       username = "eyad";
       useremail = "eyad.alsibai@gmail.com";
       system = "aarch64-darwin";
-      hostname = "${username}-m3";
-      specialArgs =
-        inputs
-        // {
-          inherit username useremail hostname nixvim;
+      
+      # Host configurations
+      hosts = {
+        "eyad-m3" = {
+          hostname = "eyad-m3";
+          system = "aarch64-darwin";
+        };
+        # Add more hosts here as needed
+        # "eyad-air" = {
+        #   hostname = "eyad-air";
+        #   system = "aarch64-darwin";
+        # };
+      };
+
+      # Common special args passed to all modules
+      mkSpecialArgs = hostname: inputs // {
+        inherit username useremail hostname;
+      };
+
+      # Function to create a Darwin configuration for a host
+      mkDarwinConfiguration = hostName: hostConfig:
+        darwin.lib.darwinSystem {
+          inherit (hostConfig) system;
+          specialArgs = mkSpecialArgs hostConfig.hostname;
+          modules = [
+            # Host-specific configuration
+            ./hosts/${hostName}
+
+            # Stylix theming
+            stylix.darwinModules.stylix
+            {
+              stylix.enable = false;
+              stylix.image = ./wallpaper.png;
+              stylix.polarity = "dark";
+            }
+
+            # Nix index database
+            nix-index-database.darwinModules.nix-index
+            {
+              programs.nix-index-database.comma.enable = true;
+            }
+
+            # Home Manager integration
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = mkSpecialArgs hostConfig.hostname;
+              home-manager.backupFileExtension = "bak";
+              home-manager.users.${username} = ./hosts/${hostName}/home.nix;
+            }
+          ];
         };
     in
     {
-      darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [
-          ./darwin/nix-core.nix
-          ./darwin/system.nix
-          ./darwin/apps.nix
-          ./darwin/host-users.nix
-          stylix.darwinModules.stylix
-          {
-            stylix.enable = false;
-            stylix.image = ./wallpaper.png;
-            stylix.polarity = "dark";
-          }
+      # Darwin configurations for each host
+      darwinConfigurations = builtins.mapAttrs mkDarwinConfiguration hosts;
 
-          nix-index-database.darwinModules.nix-index
-          # optional to also wrap and install comma
-          { programs.nix-index-database.comma.enable = true; }
+      # Nix code formatter
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
 
-          # home manager
-          home-manager.darwinModules.home-manager
-          {
-            # home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.backupFileExtension = "bak";
-            home-manager.users.${username} = import ./home;
-          }
+      # Development shell
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+        buildInputs = with nixpkgs.legacyPackages.${system}; [
+          just
+          nixpkgs-fmt
+          statix
         ];
       };
-
-      # nix code formatter
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
     };
 }
