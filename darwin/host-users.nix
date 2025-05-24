@@ -1,7 +1,7 @@
 { username
 , hostname
 , ...
-} @ args:
+}:
 #let
 # blockedDomains = ''
 #   127.0.0.1 apresolve.spotify.com
