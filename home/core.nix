@@ -34,6 +34,18 @@
 
     # productivity
     glow # markdown previewer in terminal
+    spotify-player # A command-line Spotify client
+    tldr
+    dust
+    atuin # A shell history manager
+    ripgrep
+    # dnote
+    ttyd
+    yt-dlp
+    ffmpeg-full
+    lazysql
+    curlFull
+
   ];
 
   programs = {

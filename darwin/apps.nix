@@ -35,6 +35,31 @@
     # texlive.combined.scheme-full
     cointop
     colima
+    firefox
+
+    discord
+    m-cli
+    R
+    iina
+    insomnia
+    wireshark
+    flameshot
+    slack
+    soundsource
+    zoom-us
+    appcleaner
+    teams
+    telegram-desktop
+    spotify
+    signal-desktop-bin
+    qutebrowser
+    zed-editor # zed-editor-fhs
+    # handbrake
+    claude-code
+    gpt-cli
+    localsend
+    # ghostty
+    bitwarden-cli
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -43,7 +68,7 @@
   programs.nix-index.enable = true;
 
   fonts.packages = [
-    # pkgs.sketchybar-app-font
+    pkgs.sketchybar-app-font
   ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
@@ -52,7 +77,6 @@
   # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew = {
     enable = true;
-
     onActivation = {
       autoUpdate = true;
       # 'zap': uninstalls all formulae(and related files) not listed here.
@@ -100,67 +124,36 @@
       "nikitabobko/tap"
       "dimentium/autoraise"
       "localsend/localsend"
-      "dnote/dnote"
+      # "dnote/dnote"
     ];
 
     # `brew install`
-    # TODO Feel free to add your favorite apps here.
     brews = [
-      "r"
-      "curl" # no not install curl via nixpkgs, it's not working well on macOS!
-      "bitwarden-cli"
-      "atuin"
-      "dust"
-      "tldr"
-      "m-cli"
-
       # "sketchybar"
       "borders"
-      "spotify_player"
-      "lazysql"
-      "ffmpeg"
-      "yt-dlp"
-      "ttyd"
-
-      "ripgrep"
-      "dnote"
-
     ];
 
     # `brew install --cask`
-    # TODO Feel free to add your favorite apps here.
     casks = [
-      "firefox"
       "google-chrome"
       "visual-studio-code"
       "only-switch"
       # IM & audio & remote desktop & meeting
       # "telegram"
-      "discord"
       "webex-meetings"
-      "spotify"
 
-      "iina" # video player
-      "raycast"
       "stats" # beautiful system monitor
-
-      # Development
-      "insomnia" # REST client
-      #  "wireshark" # network analyzer
 
       "chatgpt"
 
       ####  video Editing
       # "adobe-creative-cloud"
-      #     "handbrake"
       # "obs"
       "shottr"
       "the-unarchiver"
-      "keka"
-      "appcleaner"
       # "todoist"
       "akiflow"
-      "soundsource"
+
       "karabiner-elements"
       "hammerspoon"
 
@@ -171,10 +164,6 @@
       "readdle-spark"
       # "neovide"
       # "logi-options-plus"
-      "slack"
-      "discord"
-      "zoom"
-      "telegram-desktop"
       "dropbox"
       "basecamp"
       "hey"
@@ -184,7 +173,6 @@
       #      "opera"
       "send-to-kindle"
       # "kindle"
-      "qutebrowser"
       # "rectangle"
       "grammarly-desktop"
       "notion"
@@ -193,13 +181,10 @@
       "linear-linear"
       "ticktick"
       "tailscale"
-      "iina"
       # "lapce"
       # "sitesucker-pro"
-      "microsoft-teams"
       "microsoft-remote-desktop"
       "orion"
-      "flameshot"
 
       # "font-3270-nerd-font"
       "font-fira-mono-nerd-font"
@@ -270,28 +255,21 @@
       "rocket"
       "imageoptim"
       "transnomino"
-      "localsend"
 
       # "cardhop"
       # "fantastical"
       "capacities"
-      "zed"
       "boop"
       "reader"
       "netdownloadhelpercoapp"
       "dupeguru"
-      # "microsoft-office"
 
       "siyuan"
       "rstudio"
       "steam"
-      "emby"
       "claude"
       "losslesscut"
       "canva"
-      "handbrake"
-      "ghostty"
-      "whatsapp"
       "huggingchat"
       "actual"
       "trae"
