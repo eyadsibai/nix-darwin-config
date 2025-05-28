@@ -44,6 +44,41 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # For managing secrets securely
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # For faster nix operations and binary cache
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # For development environments
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # macOS app management
+    nixcasks = {
+      url = "github:jacekszymanski/nixcasks";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Better nix shell prompts
+    nix-direnv = {
+      url = "github:nix-community/nix-direnv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Unified package search
+    nix-search-cli = {
+      url = "github:peterldowns/nix-search-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -61,11 +96,17 @@
       useremail = "eyad.alsibai@gmail.com";
       system = "aarch64-darwin";
       hostname = "${username}-m3";
+      osVersion = "sequoia";
+      nixcasks = (inputs.nixcasks.output {
+        inherit osVersion;
+      }).packages.${system};
       specialArgs =
         inputs
         // {
-          inherit username useremail hostname nixvim;
+          inherit username useremail hostname nixvim nixcasks;
+          
         };
+
     in
     {
       darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
@@ -82,6 +123,8 @@
             stylix.polarity = "dark";
           }
 
+          
+
           nix-index-database.darwinModules.nix-index
           # optional to also wrap and install comma
           { programs.nix-index-database.comma.enable = true; }
@@ -89,8 +132,8 @@
           # home manager
           home-manager.darwinModules.home-manager
           {
-            # home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useGlobalPkgs = true;
+            # home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.backupFileExtension = "bak";
             home-manager.users.${username} = import ./home;

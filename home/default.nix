@@ -11,7 +11,6 @@
     ./git.nix
     ./starship.nix
     ./nixvim.nix
-    ./apps.nix
   ];
 
   # Home Manager needs a bit of information about you and the

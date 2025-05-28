@@ -107,7 +107,7 @@
         NSScrollAnimationEnabled = true;
 
         # Autohide menu bar
-        _HIHideMenuBar = true;
+        _HIHideMenuBar = false;
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
@@ -269,16 +269,16 @@
       nerd-fonts.iosevka
       nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
-      #    (nerd-fonts.override {
-      #     fonts = [
-      # symbols icon only
-      #      "NerdFontsSymbolsOnly"
-      # Characters
-      #  "FiraCode"
-      #  "JetBrainsMono"
-      #  "Iosevka"
-      #   ];
-      # })
+      nerd-fonts.fira-mono
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.ubuntu
+      nerd-fonts.hack
+      source-code-pro
+      nerd-fonts.meslo-lg
+      nerd-fonts.caskaydia-cove
+
+      sketchybar-app-font
+
     ];
   };
 }

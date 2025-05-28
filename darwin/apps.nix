@@ -1,21 +1,6 @@
-{ pkgs, ... }: {
-  ##########################################################################
-  #
-  #  Install all apps and packages here.
-  #
-  #  NOTE: Your can find all available options in:
-  #    https://daiderd.com/nix-darwin/manual/index.html
-  #
-  # TODO Fell free to modify this file to fit your needs.
-  #
-  ##########################################################################
+{ config, pkgs, username, lib, ... }:
+{
 
-  # Install packages from nix's official package repository.
-  #
-  # The packages installed here are available to all users, and are reproducible across machines, and are rollbackable.
-  # But on macOS, it's less stable than homebrew.
-  #
-  # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
 
   environment.systemPackages = with pkgs; [
     # neovim
@@ -59,17 +44,106 @@
     gpt-cli
     localsend
     # ghostty
-    bitwarden-cli
+    # bitwarden-cli
+    google-chrome
+    losslesscut-bin
+    lapce
+    rstudio
+    nmap
+    #### security-tools
+    # nuclei
+    # metasploit
+    # burpsuite
+    # EternalBlue not available 
+
+    nnn # terminal file manager
+
+    # archives
+    zip
+    xz
+    unzip
+    p7zip
+
+    # utils
+    ripgrep # recursively searches directories for a regex pattern
+    jq # A lightweight and flexible command-line JSON processor
+    yq-go # yaml processer https://github.com/mikefarah/yq
+    fzf # A command-line fuzzy finder
+
+    aria2 # A lightweight multi-protocol & multi-source command-line download utility
+    socat # replacement of openbsd-netcat
+    nmap # A utility for network discovery and security auditing
+
+    # misc
+    cowsay
+    file
+    which
+    tree
+    gnused
+    gnutar
+    gawk
+    zstd
+    caddy
+    gnupg
+
+    # productivity
+    glow # markdown previewer in terminal
+    spotify-player # A command-line Spotify client
+    tldr
+    dust
+    atuin # A shell history manager
+    ripgrep
+    # dnote
+    ttyd
+    yt-dlp
+    ffmpeg-full
+    lazysql
+    curlFull
+
+
+
+
+    nixcasks.chatgpt
+    # nixcasks.messenger
+    nixcasks.basecamp
+    nixcasks.hey
+    nixcasks.capacities
+    nixcasks.plex
+    nixcasks.raindropio
+    nixcasks.claude
+    nixcasks.ticktick
+    nixcasks.notion
+    nixcasks.grammarly-desktop
+    nixcasks.linear-linear
+
+    nixcasks.twist
+    nixcasks.intellij-idea
+    nixcasks.anytype
+    nixcasks.stats # beautiful system monitor
+    nixcasks.dupeguru
+    nixcasks.siyuan
+    nixcasks.canva
+    nixcasks.actual
+    nixcasks.huggingchat
+    nixcasks.trae
+    nixcasks.imageoptim
+    nixcasks.boop
+    nixcasks.transnomino
+    # nixcasks.whatsapp
+
+    nixcasks.hammerspoon
+
+    nixcasks.only-switch
+
+    nixcasks.shottr
+    nixcasks.the-unarchiver
+
   ];
 
   environment.variables.EDITOR = "nvim";
 
   programs.gnupg.agent.enable = true;
   programs.nix-index.enable = true;
-
-  fonts.packages = [
-    pkgs.sketchybar-app-font
-  ];
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
@@ -124,161 +198,375 @@
       "nikitabobko/tap"
       "dimentium/autoraise"
       "localsend/localsend"
+      "colindean/fonts-nonfree"
       # "dnote/dnote"
     ];
 
     # `brew install`
     brews = [
-      # "sketchybar"
       "borders"
     ];
 
     # `brew install --cask`
     casks = [
-      "google-chrome"
       "visual-studio-code"
-      "only-switch"
-      # IM & audio & remote desktop & meeting
-      # "telegram"
-      "webex-meetings"
-
-      "stats" # beautiful system monitor
-
-      "chatgpt"
-
-      ####  video Editing
-      # "adobe-creative-cloud"
-      # "obs"
-      "shottr"
-      "the-unarchiver"
-      # "todoist"
       "akiflow"
-
-      "karabiner-elements"
-      "hammerspoon"
-
-      "messenger"
       "raycast"
-      #  "vlc"
       "yandex-disk"
       "readdle-spark"
       # "neovide"
       # "logi-options-plus"
       "dropbox"
-      "basecamp"
-      "hey"
-      "raindropio"
-      # "remarkable"
-      "logseq"
-      #      "opera"
-      "send-to-kindle"
-      # "kindle"
-      # "rectangle"
-      "grammarly-desktop"
-      "notion"
       "wezterm"
-      "whatsapp"
-      "linear-linear"
-      "ticktick"
       "tailscale"
-      # "lapce"
-      # "sitesucker-pro"
-      "microsoft-remote-desktop"
-      "orion"
 
-      # "font-3270-nerd-font"
-      "font-fira-mono-nerd-font"
-      # "font-inconsolata-go-nerd-font"
-      # "font-inconsolata-lgc-nerd-font"
-      # "font-inconsolata-nerd-font"
-      # "font-monofur-nerd-font"
-      # "font-overpass-nerd-font"
-      "font-ubuntu-mono-nerd-font"
-      # "font-agave-nerd-font"
-      # "font-arimo-nerd-font"
-      # "font-anonymice-nerd-font"
-      # "font-aurulent-sans-mono-nerd-font"
-      # "font-bigblue-terminal-nerd-font"
-      # "font-bitstream-vera-sans-mono-nerd-font"
-      # "font-blex-mono-nerd-font"
-      "font-caskaydia-cove-nerd-font"
-      # "font-code-new-roman-nerd-font"
-      # "font-cousine-nerd-font"
-      # "font-daddy-time-mono-nerd-font"
-      # "font-dejavu-sans-mono-nerd-font"
-      # "font-droid-sans-mono-nerd-font"
-      # "font-fantasque-sans-mono-nerd-font"
-      "font-fira-code-nerd-font"
-      # "font-go-mono-nerd-font"
-      # "font-gohufont-nerd-font"
-      "font-hack-nerd-font"
-      # "font-hasklug-nerd-font"
-      # "font-heavy-data-nerd-font"
-      # "font-hurmit-nerd-font"
-      # "font-im-writing-nerd-font"
-      "font-iosevka-nerd-font"
-      "font-jetbrains-mono-nerd-font"
-
-      # "font-lekton-nerd-font"
-      # "font-liberation-nerd-font"
-      "font-meslo-lg-nerd-font"
-      # "font-monoid-nerd-font"
-      # "font-mononoki-nerd-font"
-      # "font-mplus-nerd-font"
-      # "font-noto-nerd-font"
-      # "font-open-dyslexic-nerd-font"
-      # "font-profont-nerd-font"
-      # "font-proggy-clean-tt-nerd-font"
-      # "font-roboto-mono-nerd-font"
-      # "font-sauce-code-pro-nerd-font"
-      # "font-shure-tech-mono-nerd-font"
-      # "font-space-mono-nerd-font"
-      # "font-terminess-ttf-nerd-font"
-      # "font-tinos-nerd-font"
-      "font-ubuntu-nerd-font"
-      # "font-victor-mono-nerd-font"
       "font-sf-pro"
-      "sf-symbols"
-      "twist"
       "font-sf-mono"
-      "intellij-idea"
-      "anytype"
-      "raindropio"
-      # "logseq"
+      "sf-symbols"
+
       "hiddenbar"
-      # "alt-tab"
-      # "amazon-q"
-      # "wave"
 
-      # "aerospace"
-      # "cursor"
-      "rocket"
-      "imageoptim"
-      "transnomino"
-
-      # "cardhop"
-      # "fantastical"
       "capacities"
-      "boop"
       "reader"
       "netdownloadhelpercoapp"
-      "dupeguru"
 
-      "siyuan"
-      "rstudio"
       "steam"
-      "claude"
-      "losslesscut"
-      "canva"
-      "huggingchat"
-      "actual"
-      "trae"
-      "plex"
-      "lapce"
       "jdownloader"
       "docker"
+
+      "send-to-kindle"
+
+      ## cannot be installed via nixcasks
+      "font-microsoft-office"
+      "webex-meetings"
+      "microsoft-remote-desktop"
+      "karabiner-elements"
+      "rocket"
     ];
+  };
+
+  home-manager.users.${username} = {
+    programs.zathura.enable = true;
+    programs.yt-dlp.enable = true;
+    programs.kakoune.enable = true;
+    programs.btop.enable = true;
+    programs.bat.enable = true;
+    programs.ripgrep.enable = true;
+    programs.jq.enable = true;
+
+
+    programs.helix = {
+      enable = true;
+      extraPackages = with pkgs; [
+        markdown-oxide
+        nodePackages.vscode-langservers-extracted
+        shellcheck
+      ];
+      settings = {
+        editor = {
+          color-modes = true;
+          completion-trigger-len = 1;
+          completion-replace = true;
+          cursorline = true;
+          cursor-shape = {
+            insert = "bar";
+            normal = "block";
+            select = "underline";
+          };
+          inline-diagnostics = {
+            cursor-line = "hint";
+            other-lines = "error";
+          };
+          line-number = "relative";
+          lsp.display-inlay-hints = true;
+
+          lsp.display-messages = true;
+          statusline.center = [ "position-percentage" ];
+          true-color = true;
+          whitespace.characters = {
+            newline = "↴";
+            tab = "⇥";
+          };
+          bufferline = "always";
+          text-width = 79;
+          rulers = [ 80 ];
+          auto-save = true;
+          whitespace.render = {
+            newline = "all";
+            space = "none";
+            nbsp = "all";
+            tab = "none";
+          };
+
+          indent-guides.render = true;
+        };
+        keys.normal.space.u = {
+          f = ":format"; # format using LSP formatter
+          w = ":set whitespace.render all";
+          W = ":set whitespace.render none";
+        };
+
+      };
+
+      languages = {
+        programs.helix.languages = {
+          language =
+            let
+              deno = lang: {
+                command = lib.getExe pkgs.deno;
+                args = [ "fmt" "-" "--ext" lang ];
+              };
+
+              prettier = lang: {
+                command = lib.getExe pkgs.nodePackages.prettier;
+                args = [ "--parser" lang ];
+              };
+            in
+            [
+              {
+                name = "bash";
+                auto-format = true;
+                formatter = {
+                  command = lib.getExe pkgs.shfmt;
+                  args = [ "-i" "2" ];
+                };
+              }
+              {
+                name = "clojure";
+                injection-regex = "(clojure|clj|edn|boot|yuck)";
+                file-types = [ "clj" "cljs" "cljc" "clje" "cljr" "cljx" "edn" "boot" "yuck" ];
+              }
+              {
+                name = "cmake";
+                auto-format = true;
+                language-servers = [ "cmake-language-server" ];
+                formatter = {
+                  command = lib.getExe pkgs.cmake-format;
+                  args = [ "-" ];
+                };
+              }
+              {
+                name = "javascript";
+                auto-format = true;
+                language-servers = [ "dprint" "typescript-language-server" ];
+              }
+              {
+                name = "json";
+                formatter = deno "json";
+              }
+              {
+                name = "markdown";
+                language-servers = [ "dprint" "markdown-oxide" ];
+              }
+              {
+                name = "python";
+                auto-format = true;
+                language-servers = [
+                  "basedpyright"
+                  "ruff"
+                  "pylsp"
+                  "jedi-language-server"
+
+                ];
+              }
+              {
+                name = "qml";
+                language-servers = [ "qmlls" ];
+              }
+              {
+                name = "typescript";
+                auto-format = true;
+                language-servers = [ "dprint" "typescript-language-server" ];
+              }
+              {
+                name = "typst";
+                auto-format = true;
+                language-servers = [ "tinymist" ];
+              }
+              {
+                name = "yaml";
+                auto-format = true;
+                language-servers = [ "yaml-language-server" ];
+              }
+              {
+                name = "rust";
+                auto-format = true;
+                language-servers = [ "rust-analyzer" ];
+              }
+              {
+                name = "jsonnet";
+                auto-format = true;
+                language-servers = [ "jsonnet-language-server" ];
+              }
+              {
+                name = "lua";
+                auto-format = true;
+                language-servers = [ "lua-language-server" ];
+              }
+              {
+                name = "zig";
+                auto-format = true;
+                language-servers = [ "zig-analyzer" ];
+              }
+              {
+                name = "css";
+                auto-format = true;
+                formatter = prettier "css";
+              }
+              {
+                name = "scss";
+                auto-format = true;
+                formatter = prettier "scss";
+              }
+              {
+                name = "html";
+                auto-format = true;
+                formatter = prettier "html";
+              }
+              {
+                name = "typescriptreact";
+                auto-format = true;
+                formatter = prettier "typescriptreact";
+              }
+              {
+                name = "javascriptreact";
+                auto-format = true;
+                formatter = prettier "javascriptreact";
+              }
+              {
+                name = "vue";
+                auto-format = true;
+                formatter = prettier "vue";
+              }
+              {
+                name = "json5";
+                auto-format = true;
+                formatter = prettier "json5";
+              }
+
+            ];
+          language-server = {
+            basedpyright.command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
+
+            bash-language-server = {
+              command = lib.getExe pkgs.bash-language-server;
+              args = [ "start" ];
+            };
+
+            clangd = {
+              command = "${pkgs.clang-tools}/bin/clangd";
+              clangd.fallbackFlags = [ "-std=c++2b" ];
+            };
+
+            cmake-language-server = {
+              command = lib.getExe pkgs.cmake-language-server;
+            };
+
+            deno-lsp = {
+              command = lib.getExe pkgs.deno;
+              args = [ "lsp" ];
+              environment.NO_COLOR = "1";
+              config.deno = {
+                enable = true;
+                lint = true;
+                unstable = true;
+                suggest = {
+                  completeFunctionCalls = false;
+                  imports = { hosts."https://deno.land" = true; };
+                };
+                inlayHints = {
+                  enumMemberValues.enabled = true;
+                  functionLikeReturnTypes.enabled = true;
+                  parameterNames.enabled = "all";
+                  parameterTypes.enabled = true;
+                  propertyDeclarationTypes.enabled = true;
+                  variableTypes.enabled = true;
+                };
+              };
+            };
+
+            dprint = {
+              command = lib.getExe pkgs.dprint;
+              args = [ "lsp" ];
+            };
+
+            nil = {
+              command = lib.getExe pkgs.nil;
+              config.nil.formatting.command = [ "${lib.getExe pkgs.alejandra}" "-q" ];
+            };
+
+            qmlls = {
+              command = "${pkgs.qt6.qtdeclarative}/bin/qmlls";
+              args = [ "-E" ];
+            };
+
+            tinymist = {
+              command = lib.getExe pkgs.tinymist;
+              config = {
+                exportPdf = "onType";
+                outputPath = "$root/target/$dir/$name";
+                formatterMode = "typstyle";
+                formatterPrintWidth = 80;
+              };
+            };
+
+            typescript-language-server = {
+              command = lib.getExe pkgs.nodePackages.typescript-language-server;
+              args = [ "--stdio" ];
+              config = {
+                typescript-language-server.source = {
+                  addMissingImports.ts = true;
+                  fixAll.ts = true;
+                  organizeImports.ts = true;
+                  removeUnusedImports.ts = true;
+                  sortImports.ts = true;
+                };
+              };
+            };
+
+            ruff = {
+              command = lib.getExe pkgs.ruff;
+              args = [ "server" ];
+            };
+
+            vscode-css-language-server = {
+              command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-languageserver";
+              args = [ "--stdio" ];
+              config = {
+                provideFormatter = true;
+                css.validate.enable = true;
+                scss.validate.enable = true;
+              };
+            };
+          };
+        };
+
+        home.file.".dprint.json".source = builtins.toFile "dprint.json" (builtins.toJSON {
+          lineWidth = 80;
+
+          # This applies to both JavaScript & TypeScript
+          typescript = {
+            quoteStyle = "preferSingle";
+            binaryExpression.operatorPosition = "sameLine";
+          };
+
+          json.indentWidth = 2;
+
+          excludes = [
+            "**/*-lock.json"
+          ];
+
+          plugins = [
+            "https://plugins.dprint.dev/typescript-0.93.0.wasm"
+            "https://plugins.dprint.dev/json-0.19.3.wasm"
+            "https://plugins.dprint.dev/markdown-0.17.8.wasm"
+          ];
+        });
+      };
+    };
+
   };
 
   # services = {tailscale.enable = true;};
 }
+

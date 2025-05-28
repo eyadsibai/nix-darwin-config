@@ -1,52 +1,7 @@
 { pkgs, ... }: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  home.packages = with pkgs; [
-    nnn # terminal file manager
 
-    # archives
-    zip
-    xz
-    unzip
-    p7zip
-
-    # utils
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
-    yq-go # yaml processer https://github.com/mikefarah/yq
-    fzf # A command-line fuzzy finder
-
-    aria2 # A lightweight multi-protocol & multi-source command-line download utility
-    socat # replacement of openbsd-netcat
-    nmap # A utility for network discovery and security auditing
-
-    # misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    caddy
-    gnupg
-
-    # productivity
-    glow # markdown previewer in terminal
-    spotify-player # A command-line Spotify client
-    tldr
-    dust
-    atuin # A shell history manager
-    ripgrep
-    # dnote
-    ttyd
-    yt-dlp
-    ffmpeg-full
-    lazysql
-    curlFull
-
-  ];
 
   programs = {
     # A modern replacement for ‘ls’
