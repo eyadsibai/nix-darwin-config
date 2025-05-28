@@ -127,7 +127,7 @@
           stylix.darwinModules.stylix
           {
             stylix.enable = false;
-            stylix.image = ./wallpaper.png;
+            stylix.image = ./configs/wallpaper.png;
             stylix.polarity = "dark";
           }
 
