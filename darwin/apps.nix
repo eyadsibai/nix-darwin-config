@@ -20,7 +20,6 @@
     spotify-player
     losslesscut-bin
     ffmpeg-full
-    yt-dlp
     feh
     diff-pdf
 
@@ -178,5 +177,12 @@
       "karabiner-elements"
       "rocket"
     ];
+  };
+
+  home-manager.users.${username} = {
+
+    programs.yt-dlp = {
+      enable = true;
+    };
   };
 }

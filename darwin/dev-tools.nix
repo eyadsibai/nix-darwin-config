@@ -13,10 +13,8 @@
 
     # Development tools
     just
-    micro
     devbox
     yq-go
-    fzf
     atuin
     curlFull
 
@@ -38,6 +36,9 @@
       git = true;
       icons = "auto";
     };
+    programs.fzf = {
+      enable = true;
+    };
 
     programs.skim = {
       enable = true;
@@ -50,12 +51,13 @@
     };
 
     programs.zathura.enable = true;
-    programs.yt-dlp.enable = true;
     programs.kakoune.enable = true;
     programs.btop.enable = true;
     programs.bat.enable = true;
     programs.ripgrep.enable = true;
     programs.jq.enable = true;
+
+    programs.micro.enable = true;
 
     programs.git = {
       enable = true;

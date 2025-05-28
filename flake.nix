@@ -115,7 +115,6 @@
           # Core darwin modules
           ./darwin/nix-core.nix
           ./darwin/system.nix
-          ./darwin/host-users.nix
 
           # Application and tool configurations
           ./darwin/apps.nix
