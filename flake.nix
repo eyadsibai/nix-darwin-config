@@ -104,7 +104,7 @@
         inputs
         // {
           inherit username useremail hostname nixvim nixcasks;
-          
+
         };
 
     in
@@ -112,10 +112,18 @@
       darwinConfigurations."${hostname}" = darwin.lib.darwinSystem {
         inherit system specialArgs;
         modules = [
+          # Core darwin modules
           ./darwin/nix-core.nix
           ./darwin/system.nix
-          ./darwin/apps.nix
           ./darwin/host-users.nix
+
+          # Application and tool configurations
+          ./darwin/apps.nix
+          ./darwin/shell.nix
+          ./darwin/dev-tools.nix
+          # ./darwin/nixvim.nix
+
+          # Styling
           stylix.darwinModules.stylix
           {
             stylix.enable = false;
@@ -123,20 +131,15 @@
             stylix.polarity = "dark";
           }
 
-          
-
           nix-index-database.darwinModules.nix-index
-          # optional to also wrap and install comma
           { programs.nix-index-database.comma.enable = true; }
 
-          # home manager
+          # Home manager
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
-            # home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.backupFileExtension = "bak";
-            home-manager.users.${username} = import ./home;
           }
         ];
       };

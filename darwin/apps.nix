@@ -253,6 +253,7 @@
     programs.bat.enable = true;
     programs.ripgrep.enable = true;
     programs.jq.enable = true;
+    programs.home-manager.enable = true;
 
 
     programs.helix = {
