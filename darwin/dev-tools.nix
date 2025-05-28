@@ -4,16 +4,34 @@
   environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
+    # Nix language servers
     nixd
     nil
-  ];
+    nixpkgs-fmt
+    statix
+    alejandra
 
+    # Development tools
+    just
+    micro
+    devbox
+    yq-go
+    fzf
+    atuin
+    curlFull
+
+
+    # R development
+    R
+  ];
 
   programs.gnupg.agent.enable = true;
   programs.nix-index.enable = true;
 
   # Home-manager development tools configuration
   home-manager.users.${username} = {
+    programs.home-manager.enable = true;
+
     # Core development tools
     programs.eza = {
       enable = true;
