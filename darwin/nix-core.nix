@@ -23,7 +23,7 @@
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
     automatic = lib.mkDefault true;
-    options = lib.mkDefault "--delete-older-than 7d";
+    options = lib.mkDefault "--delete-older-than 5d";
   };
 
   nix.optimise.automatic = true;

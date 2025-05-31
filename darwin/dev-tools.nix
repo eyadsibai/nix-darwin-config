@@ -17,8 +17,6 @@
     yq-go
     atuin
     curlFull
-
-
     # R development
     R
   ];

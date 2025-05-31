@@ -120,9 +120,9 @@
           ./darwin/apps.nix
           ./darwin/shell.nix
           ./darwin/dev-tools.nix
+          ./darwin/utm.nix
           # ./darwin/nixvim.nix
 
-          # Styling
           stylix.darwinModules.stylix
           {
             stylix.enable = false;
@@ -133,7 +133,6 @@
           nix-index-database.darwinModules.nix-index
           { programs.nix-index-database.comma.enable = true; }
 
-          # Home manager
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

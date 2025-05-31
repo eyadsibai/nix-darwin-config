@@ -2,7 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     # Communication & Social
-    discord
+    # discord
+    betterdiscord-installer
     slack
     teams
     telegram-desktop
@@ -10,7 +11,7 @@
     zoom-us
 
     # Browsers
-    firefox
+    # firefox
     google-chrome
     qutebrowser
 
@@ -43,7 +44,6 @@
 
     # Editors (GUI)
     zed-editor
-    lapce
     rstudio
 
     # AI Tools
@@ -59,7 +59,6 @@
     # System utilities
     wget
     curl
-    aria2
     httpie
     duf
     dust
@@ -79,7 +78,6 @@
     cowsay
 
     # Terminal utilities
-    nnn # terminal file manager
     glow # markdown previewer in terminal
     tldr
     ttyd
@@ -114,7 +112,32 @@
     nixcasks.only-switch
     nixcasks.shottr
     nixcasks.the-unarchiver
+    nixcasks.hiddenbar
+    nixcasks.reader
+    nixcasks.docker
+    nixcasks.dropbox
+    nixcasks.keyboardcleantool
+    nixcasks.meetingbar
   ];
+
+  services.tailscale = {
+    enable = true;
+
+  };
+
+  services.jankyborders = {
+    enable = true;
+    style = "round";
+    width = 6.0;
+    hidpi = true;
+    active_color = "0xc0e2e2e3";
+    inactive_color = "0xc02c2e34";
+    background_color = "0x302c2e34";
+    ax_focus = false;
+  };
+
+  # services.karabiner-elements.enable = true;
+
 
   # Homebrew configuration
   homebrew = {
@@ -140,7 +163,7 @@
     taps = [
       "homebrew/services"
       "homebrew/bundle"
-      "FelixKratz/formulae"
+      # "FelixKratz/formulae"
       "nikitabobko/tap"
       "dimentium/autoraise"
       "localsend/localsend"
@@ -148,41 +171,129 @@
     ];
 
     brews = [
-      "borders"
     ];
 
     casks = [
       "visual-studio-code"
       "akiflow"
       "raycast"
-      "yandex-disk"
       "readdle-spark"
-      "dropbox"
       "wezterm"
-      "tailscale"
       "font-sf-pro"
       "font-sf-mono"
       "sf-symbols"
-      "hiddenbar"
       "capacities"
-      "reader"
       "netdownloadhelpercoapp"
       "steam"
       "jdownloader"
-      "docker"
       "send-to-kindle"
       "font-microsoft-office"
       "webex-meetings"
       "microsoft-remote-desktop"
-      "karabiner-elements"
       "rocket"
+      "yandex-disk"
+      "desktoppr"
     ];
   };
 
+  system.activationScripts.applications.text =
+    let
+      env = pkgs.buildEnv {
+        name = "system-applications";
+        paths = config.environment.systemPackages;
+        pathsToLink = "/Applications";
+      };
+    in
+    pkgs.lib.mkForce ''
+      # Set up applications.
+      echo "setting up /Applications..." >&2
+      rm -rf /Applications/Nix\ Apps
+      mkdir -p /Applications/Nix\ Apps
+      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+      while read -r src; do
+        app_name=$(basename "$src")
+        echo "copying $src" >&2
+        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+      done
+    '';
+
+
   home-manager.users.${username} = {
 
-    programs.yt-dlp = {
-      enable = true;
+    programs = {
+      lazygit.enable = true;
+      zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+
+      bun = {
+        enable = true;
+      };
+
+      yt-dlp = {
+        enable = true;
+      };
+      firefox.enable = true;
+      lapce.enable = true;
+      mpv = {
+        enable = true;
+        config = {
+          profile = "gpu-hq";
+          force-window = true;
+          ytdl-format = "bestvideo+bestaudio";
+          cache-default = 4000000;
+        };
+      };
+
+      nnn = {
+        enable = true;
+        bookmarks = {
+          D = "~/Downloads";
+          p = "~/dev";
+          c = "~/.config";
+        };
+        plugins = {
+          src = (pkgs.fetchFromGitHub {
+            owner = "jarun";
+            repo = "nnn";
+            rev = "v4.9";
+            sha256 = "sha256-g19uI36HyzTF2YUQKFP4DE2ZBsArGryVHhX79Y0XzhU=";
+          }) + "/plugins";
+          mappings = {
+            p = "preview-tui";
+            o = "fzopen";
+          };
+        };
+      };
+
+      aria2 = {
+        enable = true;
+        settings = {
+          max-connection-per-server = 4;
+          split = 4;
+          min-split-size = "1M";
+          disk-cache = "64M";
+          file-allocation = "falloc";
+          continue = true;
+          max-concurrent-downloads = 5;
+        };
+      };
+      gpg = {
+        enable = true;
+        settings = {
+          trust-model = "tofu+pgp";
+          throw-keyids = false;
+          no-emit-version = true;
+          no-comments = true;
+        };
+        scdaemonSettings = {
+          disable-ccid = true;
+        };
+      };
+
     };
+
+
   };
 }

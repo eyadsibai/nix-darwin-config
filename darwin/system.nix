@@ -21,6 +21,10 @@ in
   ###################################################################################
 {
   system.stateVersion = 5;
+  system.activationScripts.postUserActivation.enable = true;
+  # system.activationScripts.postUserActivation.text = "
+  #       /usr/local/bin/desktoppr ~/Git/Github/sevaho/dotFiles/assets/background.png
+  #     ";
   system = {
     primaryUser = "eyad";
     defaults = {
@@ -243,8 +247,6 @@ in
     };
   };
 
-  # Add ability to used TouchID for sudo authentication
-  # Enable sudo authentication with Touch ID
   security = {
     pam.services.sudo_local.touchIdAuth = true;
     sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
