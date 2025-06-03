@@ -2,8 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     # Communication & Social
-    # discord
-    betterdiscord-installer
+    discord
+    # betterdiscord-installer
     slack
     teams
     telegram-desktop
@@ -116,7 +116,7 @@
     nixcasks.reader
     nixcasks.docker
     nixcasks.dropbox
-    nixcasks.keyboardcleantool
+    # nixcasks.keyboardcleantool
     nixcasks.meetingbar
   ];
 

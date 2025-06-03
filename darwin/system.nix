@@ -21,10 +21,7 @@ in
   ###################################################################################
 {
   system.stateVersion = 5;
-  system.activationScripts.postUserActivation.enable = true;
-  # system.activationScripts.postUserActivation.text = "
-  #       /usr/local/bin/desktoppr ~/Git/Github/sevaho/dotFiles/assets/background.png
-  #     ";
+
   system = {
     primaryUser = "eyad";
     defaults = {
