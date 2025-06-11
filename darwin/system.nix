@@ -1,3 +1,13 @@
+###################################################################################
+#
+#  macOS's System configuration
+#
+#  All the configuration options are documented here:
+#    https://daiderd.com/nix-darwin/manual/index.html#sec-options
+#  Incomplete list of macOS `defaults` commands :
+#    https://github.com/yannbertrand/macos-defaults
+#
+###################################################################################
 { pkgs
 , username
 , hostname
@@ -5,36 +15,110 @@
 }:
 
 let
+  # Define domains to block by redirecting them to localhost
   blockedDomains = ''
     127.0.0.1 apresolve.spotify.com
   '';
 in
-###################################################################################
-  #
-  #  macOS's System configuration
-  #
-  #  All the configuration options are documented here:
-  #    https://daiderd.com/nix-darwin/manual/index.html#sec-options
-  #  Incomplete list of macOS `defaults` commands :
-  #    https://github.com/yannbertrand/macos-defaults
-  #
-  ###################################################################################
+
 {
+  # Set the nix-darwin state version for compatibility
   system.stateVersion = 5;
 
+  # Additional security settings
+  security = {
+    pam =
+      {
+        # Enable Touch ID for local user authentication
+        services.sudo_local.touchIdAuth = true;
+      };
+    # Allow admin users to run sudo without password prompt
+    sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
+  };
+
+  # Create launch daemon to increase file descriptor limits to 524,288
+  environment.launchDaemons."limit.maxfiles.plist" = {
+    enable = true;
+    text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+      "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+      <plist version="1.0">
+      <dict>
+      <key>Label</key>
+      <string>limit.maxfiles</string>
+      <key>ProgramArguments</key>
+      <array>
+      <string>launchctl</string>
+      <string>limit</string>
+      <string>maxfiles</string>
+      <string>524288</string>
+      <string>524288</string>
+      </array>
+      <key>RunAtLoad</key>
+      <true/>
+      <key>ServiceIPC</key>
+      <false/>
+      </dict>
+      </plist>
+    '';
+  };
+
   system = {
+    # Set the primary user account
     primaryUser = "eyad";
+
     defaults = {
-      menuExtraClock.Show24Hour = true; # show 24 hour clock
+      # Show 24-hour format in menu bar clock
+      menuExtraClock.Show24Hour = true;
 
-      # customize dock
+      # Trackpad configuration
+      trackpad = {
+        # Enable tap-to-click functionality
+        Clicking = true;
+        # Enable two-finger right-click
+        TrackpadRightClick = true;
+        # Enable three-finger drag gesture
+        TrackpadThreeFingerDrag = true;
+        # Set trackpad click strength to 0 (silent clicking)
+        ActuationStrength = 0;
+      };
+
+      # Finder configuration
+      finder = {
+        # Show POSIX path in Finder window title
+        _FXShowPosixPathInTitle = true;
+        # Show all file extensions
+        AppleShowAllExtensions = true;
+        # Disable warning when changing file extensions
+        FXEnableExtensionChangeWarning = false;
+        # Enable "Quit Finder" menu item
+        QuitMenuItem = true;
+        # Show path bar at bottom of Finder windows
+        ShowPathbar = true;
+        # Show status bar at bottom of Finder windows
+        ShowStatusBar = true;
+        # Show hidden files and folders
+        AppleShowAllFiles = true;
+        # Don't create desktop icons
+        CreateDesktop = false;
+        # Search current folder by default
+        FXDefaultSearchScope = "SCcf";
+      };
+
+      # Dock configuration
       dock = {
+        # Auto-hide the dock
         autohide = true;
+        # Set auto-hide delay to 0 seconds
         autohide-delay = 0.0;
-        show-recents = false; # disable recent apps
-
-        orientation = "bottom"; # dock position
+        # Hide recent applications section
+        show-recents = false;
+        # Set dock position to bottom of screen
+        orientation = "bottom";
+        # Hide app running indicators
         show-process-indicators = false;
+        # Show only active applications
         static-only = true;
 
         # 1: Disabled
@@ -50,230 +134,201 @@ in
         # 13: Lock Screen
         # 14: Quick Note
 
-        # customize Hot Corners
-        wvous-tl-corner = 1; # top-left
-        wvous-tr-corner = 1; # top-right
-        wvous-bl-corner = 1; # bottom-left
-        wvous-br-corner = 1; # bottom-right
+        # Hot corner settings (1 = Disabled for all corners)
+        wvous-tl-corner = 1; # Top-left corner
+        wvous-tr-corner = 1; # Top-right corner  
+        wvous-bl-corner = 1; # Bottom-left corner
+        wvous-br-corner = 14; # Bottom-right corner
 
-        tilesize = 32;
-
-        dashboard-in-overlay = true; # show dashboard as overlay
-
-        # Whether to arrange spaces based on most recent use
+        # Set dock icon size to 32 pixels
+        tilesize = 50;
+        # Show Dashboard as overlay instead of separate space
+        dashboard-in-overlay = true;
+        # Don't arrange spaces by most recent use
         mru-spaces = false;
-        launchanim = false; # disable launch animation
-
-        # see https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
-        # expose-group-apps = true;
+        # Disable app launch animations
+        launchanim = false;
       };
 
-      # customize finder
-      finder = {
-        _FXShowPosixPathInTitle = true; # show full path in finder title
-        AppleShowAllExtensions = true; # show all file extensions
-        FXEnableExtensionChangeWarning = false; # disable warning when changing file extension
-        QuitMenuItem = true; # enable quit menu item
-        ShowPathbar = true; # show path bar
-        ShowStatusBar = true; # show status bar
-        AppleShowAllFiles = true;
-        CreateDesktop = false;
-        FXDefaultSearchScope = "SCcf"; # When performing a search, search the current folder by default
-      };
-
-      # customize trackpad
-      trackpad = {
-        # tap - 轻触触摸板, click - 点击触摸板
-        Clicking = true; # enable tap to click(轻触触摸板相当于点击)
-        TrackpadRightClick = true; # enable two finger right click
-        TrackpadThreeFingerDrag = true; # enable three finger drag
-        # Enable silent clicking
-        ActuationStrength = 0;
-      };
-
-      # universalaccess.reduceMotion = true;
-
-      # Trackpad speed, 0 to 3
-      #     "com.apple.trackpad.scaling" = 1.0;
-      # Sounds like something I want, but it actually reduces motions related to trackpad movements which I want to keep.
-      #universalaccess = {
-      # reduceMotion = false;
-      #};
-      # customize settings that not supported by nix-darwin directly
-      # Incomplete list of macOS `defaults` commands :
-      #   https://github.com/yannbertrand/macos-defaults
+      # Global system domain settings
       NSGlobalDomain = {
-        AppleShowAllExtensions = true; # show all file extensions
-        #AppleEnableMouseSwipeNavigateWithScrolls = true;
-        #AppleEnableSwipeNavigateWithScrolls = true;
-        # `defaults read NSGlobalDomain "xxx"`
-        "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
-        "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
-
-        AppleInterfaceStyle = "Dark"; # dark mode
-        AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
-        ApplePressAndHoldEnabled = true; # enable press and hold
-
-        # Smooth scrolling
+        # Show all file extensions globally
+        AppleShowAllExtensions = true;
+        # Disable natural scrolling (reverse scroll direction)
+        "com.apple.swipescrolldirection" = false;
+        # Disable beep feedback when adjusting volume
+        "com.apple.sound.beep.feedback" = 0;
+        # Set system appearance to dark mode
+        AppleInterfaceStyle = "Dark";
+        # Enable full keyboard access for all controls
+        AppleKeyboardUIMode = 3;
+        # Enable press and hold for accented characters
+        ApplePressAndHoldEnabled = true;
+        # Enable smooth scrolling animations
         NSScrollAnimationEnabled = true;
-
-        # Autohide menu bar
+        # Don't auto-hide menu bar
         _HIHideMenuBar = false;
-
-        # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
-        # This is very useful for vim users, they use `hjkl` to move cursor.
-        # sets how long it takes before it starts repeating.
-        # 120, 94, 68, 35, 25, 15
-
-        InitialKeyRepeat = 15; # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
-        # sets how fast it repeats once it starts.
-        # 120, 90, 60, 30, 12, 6, 2
-
-        KeyRepeat = 3; # normal minimum is 2 (30 ms), maximum is 120 (1800 ms)
-
-        NSAutomaticCapitalizationEnabled = false; # disable auto capitalization(自动大写)
-        NSAutomaticDashSubstitutionEnabled = false; # disable auto dash substitution(智能破折号替换)
-        NSAutomaticPeriodSubstitutionEnabled = false; # disable auto period substitution(智能句号替换)
-        NSAutomaticQuoteSubstitutionEnabled = false; # disable auto quote substitution(智能引号替换)
-        NSAutomaticSpellingCorrectionEnabled = false; # disable auto spelling correction(自动拼写检查)
+        # Set initial key repeat delay (15 = 225ms)
+        # minimum is 15 (225 ms), maximum is 120 (1800 ms)
+        InitialKeyRepeat = 13;
+        # Set key repeat rate (3 = 45ms between repeats)
+        # minimum is 2 (30 ms), maximum is 120 (1800 ms)
+        KeyRepeat = 2;
+        # Disable automatic capitalization
+        NSAutomaticCapitalizationEnabled = false;
+        # Disable smart dash substitution
+        NSAutomaticDashSubstitutionEnabled = false;
+        # Disable smart period substitution
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        # Disable smart quote substitution
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        # Disable spell checking
+        NSAutomaticSpellingCorrectionEnabled = false;
+        # Disable window animations
         NSAutomaticWindowAnimationsEnabled = false;
-
-        NSNavPanelExpandedStateForSaveMode = true; # expand save panel by default(保存文件时的路径选择/文件名输入页)
+        # Expand save dialogs by default
+        NSNavPanelExpandedStateForSaveMode = true;
         NSNavPanelExpandedStateForSaveMode2 = true;
-
+        # Use Celsius for temperature
         AppleTemperatureUnit = "Celsius";
+        # Use centimeters for measurements
         AppleMeasurementUnits = "Centimeters";
+        # Use metric units
         AppleMetricUnits = 1;
-
-        # AppleInterfaceStyleSwitchesAutomatically = true;
-
+        # Don't save new documents to iCloud by default
         NSDocumentSaveNewDocumentsToCloud = false;
+        # Force 24-hour time format
         AppleICUForce24HourTime = true;
+        # Show all files globally
         AppleShowAllFiles = true;
+        # Disable function key behavior (F1, F2, etc. work as function keys)
         "com.apple.keyboard.fnState" = false;
-        # for the magic mouse
-        # "com.apple.mouse.tapBehavior" = 1;
-
+        # Disable system beep sound
         "com.apple.sound.beep.volume" = 0.0;
       };
 
-      # one space spans across all physical displays
+      # Make spaces span across all displays
       spaces.spans-displays = true;
 
-      # Customize settings that not supported by nix-darwin directly
-      # see the source code of this project to get more undocumented options:
-      #    https://github.com/rgcr/m-cli
-      #
-      # All custom entries can be found by running `defaults read` command.
-      # or `defaults read xxx` to read a specific domain.
+      # Custom user preferences for specific applications
       CustomUserPreferences = {
         ".GlobalPreferences" = {
-          # automatically switch to a new space when switching to the application
+          # Switch to application's space when activating it
           AppleSpacesSwitchOnActivate = true;
         };
         NSGlobalDomain = {
-          # Add a context menu item for showing the Web Inspector in web views
+          # Enable Web Inspector in web views
           WebKitDeveloperExtras = true;
         };
         "com.apple.finder" = {
+          # Show external drives on desktop
           ShowExternalHardDrivesOnDesktop = true;
+          # Show hard drives on desktop
           ShowHardDrivesOnDesktop = true;
+          # Show network servers on desktop
           ShowMountedServersOnDesktop = true;
+          # Show removable media on desktop
           ShowRemovableMediaOnDesktop = true;
+          # Sort folders first in Finder
           _FXSortFoldersFirst = true;
-          # When performing a search, search the current folder by default
+          # Search current folder by default
           FXDefaultSearchScope = "SCcf";
         };
         "com.apple.desktopservices" = {
-          # Avoid creating .DS_Store files on network or USB volumes
+          # Don't create .DS_Store files on network volumes
           DSDontWriteNetworkStores = true;
+          # Don't create .DS_Store files on USB volumes
           DSDontWriteUSBStores = true;
         };
         "com.apple.spaces" = {
-          "spans-displays" = 0; # Display have seperate spaces
+          # Each display has separate spaces (0 = separate, 1 = spans displays)
+          "spans-displays" = 0;
         };
         "com.apple.WindowManager" = {
-          EnableStandardClickToShowDesktop = 0; # Click wallpaper to reveal desktop
-          StandardHideDesktopIcons = 0; # Show items on desktop
-          HideDesktop = 0; # Do not hide items on desktop & stage manager
+          # Disable click wallpaper to show desktop
+          EnableStandardClickToShowDesktop = 0;
+          # Show desktop icons
+          StandardHideDesktopIcons = 0;
+          # Don't hide desktop items
+          HideDesktop = 0;
+          # Don't hide widgets in Stage Manager
           StageManagerHideWidgets = 0;
+          # Don't hide widgets normally
           StandardHideWidgets = 0;
         };
         "com.apple.screensaver" = {
-          # Require password immediately after sleep or screen saver begins
+          # Require password after screensaver starts
           askForPassword = 1;
+          # Require password immediately (0 second delay)
           askForPasswordDelay = 0;
         };
         "com.apple.screencapture" = {
+          # Save screenshots to Downloads folder
           location = "~/Downloads";
+          # Save screenshots as PNG files
           type = "png";
         };
         "com.apple.AdLib" = {
+          # Disable personalized advertising
           allowApplePersonalizedAdvertising = false;
         };
-        # Prevent Photos from opening automatically when devices are plugged in
+        # Prevent Photos app from auto-opening when devices are connected
         "com.apple.ImageCapture".disableHotPlug = true;
-
-        # "com.apple.dock" = {"expose-group-apps" = true;};
       };
 
+      # Login window settings
       loginwindow = {
-        GuestEnabled = false; # disable guest user
-        SHOWFULLNAME = true; # show full name in login window
+        # Disable guest user account
+        GuestEnabled = false;
+        # Show full names instead of usernames
+        SHOWFULLNAME = true;
       };
 
+      # Automatically install macOS updates
       SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+      # Enable firewall for downloaded signed applications
       alf.allowdownloadsignedenabled = 1;
     };
 
-    # keyboard settings is not very useful on macOS
-    # the most important thing is to remap option key to alt key globally,
-    # but it's not supported by macOS yet.
+    # Keyboard configuration
     keyboard = {
-      enableKeyMapping = true; # enable key mapping so that we can use `option` as `control`
-
-      # NOTE: do NOT support remap capslock to both control and escape at the same time
-      remapCapsLockToControl = false; # remap caps lock to control, useful for emac users
-      remapCapsLockToEscape = true; # remap caps lock to escape, useful for vim users
-
-      # swap left command and left alt
-      # so it matches common keyboard layout: `ctrl | command | alt`
-      #
-      # disabled, caused only problems!
+      # Enable key mapping functionality
+      enableKeyMapping = true;
+      # Don't remap Caps Lock to Control
+      remapCapsLockToControl = false;
+      # Remap Caps Lock to Escape (useful for Vim users)
+      remapCapsLockToEscape = true;
+      # Don't swap Command and Alt keys
       swapLeftCommandAndLeftAlt = false;
+    };
+
+    # Script to block domains by adding them to /etc/hosts
+    activationScripts.blockHosts = {
+      text = ''
+        echo "${blockedDomains}" | sudo tee -a /etc/hosts
+      '';
     };
   };
 
-  security = {
-    pam.services.sudo_local.touchIdAuth = true;
-    sudo.extraConfig = "%admin ALL = (ALL) NOPASSWD: ALL";
-
-  };
-  # Enable linux builder VM.
-  # This setting relies on having access to a cached version of the builder, since Darwin can't build it itself. The configuration options of the builder *can* be changed, but requires access to a (in this case) aarch64-linux builder to build. Hence on a new machine, or if there's any problems with the existing builder, the build fails.
-  # For this reason, avoid changing the configuration options of linux-builder if at all possible.
+  # Enable Linux builder VM for cross-platform builds
   nix.linux-builder.enable = true;
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  # this is required if you want to use darwin's default shell - zsh
+  # Enable and configure Zsh shell
   programs.zsh.enable = true;
+  # Available shell options
   environment.shells = [
-    pkgs.zsh
-    pkgs.nushell
+    pkgs.zsh # Z shell
+    pkgs.nushell # Nu shell
   ];
 
-  # Set your time zone.
-  # comment this due to the issue:
-  #   https://github.com/LnL7/nix-darwin/issues/359
-  # time.timeZone = "Asia/shanghai";
-
-  # Fonts
+  # Install fonts
   fonts = {
     packages = with pkgs; [
-      # packages = with pkgs; [
-      # icon fonts
+      # Icon and symbol fonts
       material-design-icons
       font-awesome
+
+      # Nerd Fonts (programming fonts with icons)
       nerd-fonts.fira-code
       nerd-fonts.iosevka
       nerd-fonts.jetbrains-mono
@@ -282,48 +337,34 @@ in
       nerd-fonts.ubuntu-mono
       nerd-fonts.ubuntu
       nerd-fonts.hack
-      source-code-pro
       nerd-fonts.meslo-lg
       nerd-fonts.caskaydia-cove
 
+      # Additional fonts
+      source-code-pro
       sketchybar-app-font
-
     ];
   };
 
+  # Network configuration
+  networking.hostName = hostname; # Set system hostname
+  networking.computerName = hostname; # Set computer name
+  system.defaults.smb.NetBIOSName = hostname; # Set NetBIOS name for SMB
 
-  system.activationScripts.blockHosts = {
-    text = ''
-      echo "${blockedDomains}" | sudo tee -a /etc/hosts
-    '';
-  };
-  networking.hostName = hostname;
-  networking.computerName = hostname;
-  system.defaults.smb.NetBIOSName = hostname;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User account configuration
   users.users."${username}" = {
-    home = "/Users/${username}";
+    home = "/Users/${username}"; # Set user home directory
   };
 
+  # Home Manager configuration for the user
   home-manager.users.${username} = {
-    # Home Manager needs a bit of information about you and the
-    # paths it should manage.
     home = {
-      username = username;
-      homeDirectory = "/Users/${username}";
-
-      # This value determines the Home Manager release that your
-      # configuration is compatible with. This helps avoid breakage
-      # when a new Home Manager release introduces backwards
-      # incompatible changes.
-      #
-      # You can update Home Manager without changing this value. See
-      # the Home Manager release notes for a list of state version
-      # changes in each release.
-      stateVersion = "23.11";
+      username = username; # Set username
+      homeDirectory = "/Users/${username}"; # Set home directory path
+      stateVersion = "23.11"; # Home Manager compatibility version
     };
   };
 
+  # Allow the specified user to use Nix trusted features
   nix.settings.trusted-users = [ username ];
 }

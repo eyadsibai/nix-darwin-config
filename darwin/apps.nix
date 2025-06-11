@@ -13,7 +13,7 @@
     # Browsers
     # firefox
     google-chrome
-    qutebrowser
+    # qutebrowser
 
     # Media & Entertainment
     iina
@@ -83,6 +83,9 @@
     ttyd
     lazysql
 
+    qutebrowser
+
+
     # Nixcasks applications
     nixcasks.chatgpt
     nixcasks.basecamp
@@ -118,6 +121,8 @@
     nixcasks.dropbox
     # nixcasks.keyboardcleantool
     nixcasks.meetingbar
+    nixcasks.homerow
+    nixcasks.qutebrowser
   ];
 
   services.tailscale = {
@@ -193,6 +198,8 @@
       "rocket"
       "yandex-disk"
       "desktoppr"
+      "zen"
+      "floorp"
     ];
   };
 
