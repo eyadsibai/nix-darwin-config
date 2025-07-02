@@ -11,7 +11,7 @@
     zoom-us
 
     # Browsers
-    # firefox
+    firefox
     google-chrome
     # qutebrowser
 
@@ -82,14 +82,21 @@
     tldr
     ttyd
     lazysql
+    jujutsu
+    gg-jj
+    jjui
+    lazyjj
+    gemini-cli
+    claude-code
+    opencode
 
-    qutebrowser
+
 
 
     # Nixcasks applications
     nixcasks.chatgpt
     nixcasks.basecamp
-    nixcasks.hey
+    nixcasks.hey-desktop
     nixcasks.capacities
     nixcasks.plex
     nixcasks.raindropio
@@ -107,7 +114,7 @@
     nixcasks.canva
     nixcasks.actual
     nixcasks.huggingchat
-    nixcasks.trae
+    # nixcasks.trae
     nixcasks.imageoptim
     nixcasks.boop
     nixcasks.transnomino
@@ -117,7 +124,7 @@
     nixcasks.the-unarchiver
     nixcasks.hiddenbar
     nixcasks.reader
-    nixcasks.docker
+    nixcasks.docker-desktop
     nixcasks.dropbox
     # nixcasks.keyboardcleantool
     nixcasks.meetingbar
@@ -144,7 +151,6 @@
   # services.karabiner-elements.enable = true;
 
 
-  # Homebrew configuration
   homebrew = {
     enable = true;
     onActivation = {
@@ -200,29 +206,60 @@
       "desktoppr"
       "zen"
       "floorp"
+      "trae"
     ];
   };
 
-  system.activationScripts.applications.text =
-    let
-      env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = config.environment.systemPackages;
-        pathsToLink = "/Applications";
-      };
-    in
-    pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
-        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
-    '';
+  # system.activationScripts.applications.text =
+  #   let
+  #     env = pkgs.buildEnv {
+  #       name = "system-applications";
+  #       paths = config.environment.systemPackages;
+  #       pathsToLink = "/Applications";
+  #     };
+
+  #     setupScript = pkgs.writeShellScript "setup-nix-applications" ''
+  #       set -euo pipefail
+
+  #       apps_dir="/Applications/Nix Apps"
+  #       env_apps_dir="${env}/Applications"
+
+  #       echo "Setting up $apps_dir..." >&2
+
+  #       # Clean and recreate the directory
+  #       if [[ -d "$apps_dir" ]]; then
+  #         rm -rf "$apps_dir"
+  #       fi
+  #       mkdir -p "$apps_dir"
+
+  #       # Check if source directory exists
+  #       if [[ ! -d "$env_apps_dir" ]]; then
+  #         echo "No applications directory found at $env_apps_dir" >&2
+  #         exit 0
+  #       fi
+
+  #       # Process each application
+  #       shopt -s nullglob
+  #       for app_link in "$env_apps_dir"/*; do
+  #         if [[ -L "$app_link" ]]; then
+  #           app_target=$(readlink "$app_link")
+  #           app_name=$(basename "$app_target")
+
+  #           if [[ -n "$app_target" && -d "$app_target" ]]; then
+  #             echo "Creating alias for $app_name" >&2
+  #             if ! "${pkgs.mkalias}/bin/mkalias" "$app_target" "$apps_dir/$app_name"; then
+  #               echo "Warning: Failed to create alias for $app_name" >&2
+  #             fi
+  #           else
+  #             echo "Warning: Skipping invalid target for $app_link" >&2
+  #           fi
+  #         fi
+  #       done
+
+  #       echo "Applications setup complete" >&2
+  #     '';
+  #   in
+  #   pkgs.lib.mkForce "${setupScript}";
 
 
   home-manager.users.${username} = {

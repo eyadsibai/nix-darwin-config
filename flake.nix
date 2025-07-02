@@ -79,6 +79,8 @@
       url = "github:peterldowns/nix-search-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flox.url = "github:flox/flox";
   };
 
   outputs =
@@ -139,6 +141,7 @@
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.backupFileExtension = "bak";
           }
+          inputs.flox.darwinModules.flox
         ];
       };
 
