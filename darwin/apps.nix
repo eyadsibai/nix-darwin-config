@@ -11,7 +11,7 @@
     zoom-us
 
     # Browsers
-    firefox
+    # firefox
     google-chrome
     # qutebrowser
 
@@ -210,6 +210,7 @@
 
       "dropbox"
       "keyboardcleantool"
+      "firefox"
     ];
   };
 
@@ -281,7 +282,7 @@
       yt-dlp = {
         enable = true;
       };
-      firefox.enable = true;
+      # firefox.enable = true;
       lapce.enable = true;
       mpv = {
         enable = true;
