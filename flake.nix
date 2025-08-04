@@ -62,11 +62,7 @@
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # macOS app management
-    nixcasks = {
-      url = "github:jacekszymanski/nixcasks";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
 
     # Better nix shell prompts
     nix-direnv = {
@@ -98,14 +94,11 @@
       useremail = "eyad.alsibai@gmail.com";
       system = "aarch64-darwin";
       hostname = "${username}-m3";
-      osVersion = "sequoia";
-      nixcasks = (inputs.nixcasks.output {
-        inherit osVersion;
-      }).packages.${system};
+
       specialArgs =
         inputs
         // {
-          inherit username useremail hostname nixvim nixcasks;
+          inherit username useremail hostname nixvim;
 
         };
 

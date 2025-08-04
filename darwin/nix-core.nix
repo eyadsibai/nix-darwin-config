@@ -1,6 +1,5 @@
 { pkgs
 , lib
-, nixcasks
 , ...
 }: {
   nix.settings = {
@@ -15,9 +14,9 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  nixpkgs.config.packageOverrides = prev: {
-    inherit nixcasks;
-  };
+  # nixpkgs.config.packageOverrides = prev: {
+  #   inherit nixcasks;
+  # };
 
 
   ids.gids.nixbld = 30000;

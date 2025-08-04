@@ -87,49 +87,13 @@
     jjui
     lazyjj
     gemini-cli
-    claude-code
+
     opencode
+    uv
+    nodejs
+    # helix
+    # kakoune
 
-
-
-
-    # Nixcasks applications
-    nixcasks.chatgpt
-    nixcasks.basecamp
-    nixcasks.hey-desktop
-    nixcasks.capacities
-    nixcasks.plex
-    nixcasks.raindropio
-    nixcasks.claude
-    nixcasks.ticktick
-    nixcasks.notion
-    nixcasks.grammarly-desktop
-    nixcasks.linear-linear
-    nixcasks.twist
-    nixcasks.intellij-idea
-    nixcasks.anytype
-    nixcasks.stats
-    nixcasks.dupeguru
-    nixcasks.siyuan
-    nixcasks.canva
-    nixcasks.actual
-    nixcasks.huggingchat
-    # nixcasks.trae
-    nixcasks.imageoptim
-    nixcasks.boop
-    nixcasks.transnomino
-    nixcasks.hammerspoon
-    nixcasks.only-switch
-    nixcasks.shottr
-    nixcasks.the-unarchiver
-    nixcasks.hiddenbar
-    nixcasks.reader
-    nixcasks.docker-desktop
-    nixcasks.dropbox
-    # nixcasks.keyboardcleantool
-    nixcasks.meetingbar
-    nixcasks.homerow
-    nixcasks.qutebrowser
   ];
 
   services.tailscale = {
@@ -137,16 +101,16 @@
 
   };
 
-  services.jankyborders = {
-    enable = true;
-    style = "round";
-    width = 6.0;
-    hidpi = true;
-    active_color = "0xc0e2e2e3";
-    inactive_color = "0xc02c2e34";
-    background_color = "0x302c2e34";
-    ax_focus = false;
-  };
+  # services.jankyborders = {
+  #   enable = true;
+  #   style = "round";
+  #   width = 6.0;
+  #   hidpi = true;
+  #   active_color = "0xc0e2e2e3";
+  #   inactive_color = "0xc02c2e34";
+  #   background_color = "0x302c2e34";
+  #   ax_focus = false;
+  # };
 
   # services.karabiner-elements.enable = true;
 
@@ -182,6 +146,8 @@
     ];
 
     brews = [
+      "kakoune"
+      "helix"
     ];
 
     casks = [
@@ -207,6 +173,43 @@
       "zen"
       "floorp"
       "trae"
+      "meetingbar"
+      "homerow"
+      "qutebrowser"
+      "docker-desktop"
+      "hey-desktop"
+      "chatgpt"
+      "basecamp"
+      "plex"
+      "raindropio"
+      "claude"
+      "ticktick"
+      "notion"
+      "grammarly-desktop"
+      "linear-linear"
+      "twist"
+      "intellij-idea"
+      "anytype"
+      "stats"
+      "dupeguru"
+      "imageoptim"
+      "boop"
+      "transnomino"
+      "hammerspoon"
+      "only-switch"
+      "shottr"
+      "the-unarchiver"
+      "hiddenbar"
+      "reader"
+      "wechat"
+      "warp"
+      "siyuan"
+      "canva"
+      "actual"
+      "huggingchat"
+
+      "dropbox"
+      "keyboardcleantool"
     ];
   };
 
