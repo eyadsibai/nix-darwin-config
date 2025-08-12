@@ -43,7 +43,7 @@
     docker
 
     # Editors (GUI)
-    zed-editor
+    # zed-editor
     rstudio
 
     # AI Tools
@@ -91,6 +91,17 @@
     opencode
     uv
     nodejs
+    ast-grep
+    luarocks
+    lua5_1
+    fd
+    imagemagick
+    go
+    php
+    texlive.combined.scheme-basic
+    ghostscript
+    mermaid-cli
+
     # helix
     # kakoune
 
@@ -136,8 +147,7 @@
     };
 
     taps = [
-      "homebrew/services"
-      "homebrew/bundle"
+
       # "FelixKratz/formulae"
       "nikitabobko/tap"
       "dimentium/autoraise"
@@ -148,6 +158,10 @@
     brews = [
       "kakoune"
       "helix"
+      "rust"
+      "neovim"
+      "rustup"
+      "python"
     ];
 
     casks = [
