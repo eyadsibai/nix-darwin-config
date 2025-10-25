@@ -108,7 +108,7 @@
   ];
 
   services.tailscale = {
-    enable = true;
+    enable = false;
 
   };
 
@@ -182,7 +182,7 @@
       "webex-meetings"
       "microsoft-remote-desktop"
       "rocket"
-      "yandex-disk"
+ #     "yandex-disk"
       "desktoppr"
       "zen"
       "floorp"
@@ -196,13 +196,13 @@
       "basecamp"
       "plex"
       "raindropio"
-      "claude"
+ #     "claude"
       "ticktick"
       "notion"
       "grammarly-desktop"
       "linear-linear"
       "twist"
-      "intellij-idea"
+      "intellij-idea-ce"
       "anytype"
       "stats"
       "dupeguru"
@@ -224,7 +224,9 @@
 
       "dropbox"
       "keyboardcleantool"
-      "firefox"
+	  "tailscale"
+
+ #     "firefox"
     ];
   };
 
