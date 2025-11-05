@@ -31,7 +31,7 @@
     # Utilities
     m-cli
     flameshot
-    soundsource
+  #  soundsource
     appcleaner
     localsend
     nmap
@@ -101,6 +101,8 @@
     texlive.combined.scheme-basic
     ghostscript
     mermaid-cli
+
+    
 
     # helix
     # kakoune
@@ -224,8 +226,10 @@
 
       "dropbox"
       "keyboardcleantool"
-	  "tailscale"
-
+	  "tailscale-app"
+      "thunderbird"
+	  "google-chrome"
+	  "telegram-desktop"     
  #     "firefox"
     ];
   };
