@@ -30,7 +30,7 @@
 
     # Utilities
     m-cli
-    flameshot
+  
   #  soundsource
     appcleaner
     localsend
@@ -44,11 +44,6 @@
 
     # Editors (GUI)
     # zed-editor
-    rstudio
-
-    # AI Tools
-    claude-code
-    gpt-cli
 
     # Archive tools
     zip
@@ -86,9 +81,7 @@
     gg-jj
     jjui
     lazyjj
-    gemini-cli
 
-    opencode
     uv
     nodejs
     ast-grep
@@ -102,7 +95,6 @@
     ghostscript
     mermaid-cli
 
-    
 
     # helix
     # kakoune
@@ -164,9 +156,15 @@
       "neovim"
       "rustup"
       "python"
+       "gemini-cli"
+       "opencode"
+      
+		"gh"
     ];
 
     casks = [
+ "codex"
+
       "visual-studio-code"
       "akiflow"
       "raycast"
@@ -198,7 +196,7 @@
       "basecamp"
       "plex"
       "raindropio"
- #     "claude"
+      "claude"
       "ticktick"
       "notion"
       "grammarly-desktop"
@@ -219,7 +217,7 @@
       "reader"
       "wechat"
       "warp"
-      "siyuan"
+ #     "siyuan"
       "canva"
       "actual"
       "huggingchat"
@@ -230,7 +228,9 @@
       "thunderbird"
 	  "google-chrome"
 	  "telegram-desktop"     
+	  "claude-code"
  #     "firefox"
+
     ];
   };
 
