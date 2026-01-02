@@ -95,16 +95,15 @@
     ghostscript
     mermaid-cli
 
-
     # helix
     # kakoune
 
   ];
 
-  services.tailscale = {
-    enable = false;
+  # services.tailscale = {
+  #   enable = false;
 
-  };
+  # };
 
   # services.jankyborders = {
   #   enable = true;
@@ -197,7 +196,6 @@
       "plex"
       "raindropio"
       "claude"
-      "ticktick"
       "notion"
       "grammarly-desktop"
       "linear-linear"
