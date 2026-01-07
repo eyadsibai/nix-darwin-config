@@ -163,7 +163,7 @@
 
     casks = [
  "codex"
-
+	"kitty"
       "visual-studio-code"
       "akiflow"
       "raycast"
