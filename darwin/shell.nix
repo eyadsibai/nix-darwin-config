@@ -10,6 +10,8 @@
       enable = true;
       enableCompletion = true;
       initContent = ''
+        export PATH="$HOME/.local/bin:$PATH"
+
         if [[ $(uname -m) == 'arm64' ]]; then
          eval "$(/opt/homebrew/bin/brew shellenv)"
         fi
